@@ -12,3 +12,4 @@ To-do list: (put your name next to the one you want to do)
   - BRANCHNEG
   - BRANCHZERO
   - HALT
+If someone has an easier operand, such as read/halt, start writing the main progrma that will compile all of them. 
