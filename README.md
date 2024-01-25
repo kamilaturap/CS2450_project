@@ -21,7 +21,7 @@ BRANCHZERO = 42 Branch to a specific location in memory if the accumulator is ze
 HALT = 43 Stop the program
 
 Documents needed: 
-- document that describes the high-level functionality of the application
+- document that describes the high-level functionality of the application: https://docs.google.com/document/d/1B-COfjgCmgW5OIusujL76Qpy2hLkX3RiS1NJkV3S1QI/edit?usp=sharing
     - will need at least 2 User Stories and 10-15 use cases outlining the functionality of the application
 - working prototype
 - unit tests file
