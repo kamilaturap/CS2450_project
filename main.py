@@ -4,7 +4,9 @@ Project: Milestone 2
 Date: 2/9/2024
 Class: CS2450
 
-{High level description of program goes here}
+This program, UVsim, will read in a text file containing a basicML program written one command per line.Each basicML command will be a four-digit signed word.
+UVsim will convert the first two digits into one of 12 operations.The second two will be an operand.
+The operations include: 10-read, 11-write, 20-load, 21-store, 30-add, 31-subtract, 32-divide, 33-multiply, 40-branch, 41-branchneg, 42-branchzero, and 43-halt.
 """
 import sys
 #import functions here:
