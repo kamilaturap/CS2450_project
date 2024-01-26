@@ -10,6 +10,7 @@ The operations include: 10-read, 11-write, 20-load, 21-store, 30-add, 31-subtrac
 """
 import sys
 #import functions here:
+from cameron import *
 
 def readProgram(file):
     """Reads in file containing a basicML program. Loads registers."""
@@ -37,10 +38,10 @@ def main():
         #i/o operations:
             #READ
             case '10':
-                print(operation)
+                read(program[i][3:], program)
             #WRTIE
             case '11':
-                print(operation)
+                write(program[i][3:], program)
 
         #load/store operations:
             #LOAD
