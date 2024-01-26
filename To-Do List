@@ -1,7 +1,7 @@
 To-do list: (put your name next to the one you want to do)
 - Create a UML diagram in LucidChart and start writing the pseudocode/code
-  - READ 
-  - WRITE 
+  - READ: Cameron
+  - WRITE: Cameron
   - LOAD
   - STORE
   - ADD
@@ -11,5 +11,5 @@ To-do list: (put your name next to the one you want to do)
   - BRANCH
   - BRANCHNEG
   - BRANCHZERO
-  - HALT
+  - HALT: Cameron: Done
 If someone has an easier operand, such as read/halt, start writing the main progrma that will compile all of them. 
