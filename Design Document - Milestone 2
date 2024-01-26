@@ -1,0 +1,21 @@
+High level functionality:
+This program, UVsim, will read in a text file containing a basicML program written one command per line. Each basicML command will be a four-digit signed word. UVsim will convert the first two digits into one of 12 operations. The second two will be an operand. The operations include: 10-read, 11-write, 20-load, 21-store, 30-add, 31-subtract, 32-divide, 33-multiply, 40-branch, 41-branchneg, 42-branchzero, and 43-halt.
+User Stories:
+“As a student, I want to be able to write programs in basicML and have a virtual machine interpret my program, so that I can learn basic programming skills in basicML.”
+“ As a teacher, I want to have a tool that I can use to teach basicML and computer architecture ideas, so that students can have a better understanding of coding and the underlying machine language.”
+Use cases:
+Have up to 100 functional registers.
+Read program written in basicML, one command per line, into registers.
+Run program.
+READ function takes a terminal input and stores to memory.
+WRITE function prints word stored in memory to terminal.
+LOAD function stores a word in the accumulator from specified memory location.
+STORE function stores word in accumulator in specified memory location.
+ADD function adds a word in specified memory location to word in accumulator. Stores result in accumulator.
+SUBTRACT function subtracts a word in specified memory location from word in accumulator. Stores result in accumulator.
+DIVIDE function divides the word in the accumulator by a word from a specified memory location. Stores result in accumulator.
+MULTIPLY function multiplies a word in specified memory location with word in accumulator. Stores result in accumulator.
+BRANCH function branches to specified memory location.
+BRANCHNEG function if accumulator is negative, branches to specified memory location.
+BRANCHZERO function if accumulator is zero, branches to specified memory location.
+HALT function stops running the program.
