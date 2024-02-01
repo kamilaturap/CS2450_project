@@ -2,14 +2,14 @@ To-do list: (put your name next to the one you want to do)
 - Create a UML diagram in LucidChart and start writing the pseudocode/code
   - READ: Cameron: Done
   - WRITE: Cameron: Done
-  - LOAD
-  - STORE
-  - ADD
-  - SUBTRACT
-  - DIVIDE
-  - MULTIPLY
-  - BRANCH
-  - BRANCHNEG
-  - BRANCHZERO
+  - LOAD: Mackay: NOT Done
+  - STORE: Mackay: NOT Done
+  - ADD 
+  - SUBTRACT 
+  - DIVIDE 
+  - MULTIPLY 
+  - BRANCH: Mackay: NOT Done
+  - BRANCHNEG:
+  - BRANCHZERO: 
   - HALT: Cameron: Done
 If someone has an easier operand, such as read/halt, start writing the main progrma that will compile all of them. 
