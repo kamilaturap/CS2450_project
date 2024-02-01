@@ -30,6 +30,7 @@ def main():
         program = readProgram(input("Please input the name of your program file: "))
     
     operation = ''
+    accumulator = 0
     i = 0
     
     while i < 99 and operation != '43':
