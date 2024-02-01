@@ -11,6 +11,7 @@ The operations include: 10-read, 11-write, 20-load, 21-store, 30-add, 31-subtrac
 import sys
 #import functions here:
 from cameron import *
+from anna import *
 
 def readProgram(file):
     """Reads in file containing a basicML program. Loads registers."""
@@ -55,13 +56,15 @@ def main():
         #Arithmetic operation:
             #ADD
             case '30':
-                print(operation)
+                accumulator += add(program[i][3:], program)
+                print(accumulator)
             #SUBTRACT
             case '31':
                 print(operation)
             #DIVIDE
             case '32':
-                print(operation)
+                accumulator /= divide(program[i][3:], program)
+                print(accumulator)
             #MULTIPLY
             case '33':
                 print(operation)

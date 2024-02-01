@@ -5,12 +5,12 @@ To-do list: (put your name next to the one you want to do)
   - WRITE: Cameron: Done
   - LOAD: Mackay: NOT Done
   - STORE: Mackay: NOT Done
-  - ADD 
+  - ADD: Anna: NOT Done
   - SUBTRACT: Kamila: NOT Done
-  - DIVIDE
+  - DIVIDE: Anna: NOT Done
   - MULTIPLY: Kamila: NOT Done
   - BRANCH: Mackay: NOT Done
-  - BRANCHNEG:
+  - BRANCHNEG: Anna: NOT Done
   - BRANCHZERO: Kamila: NOT Done 
   - HALT: Cameron: Done
 If someone has an easier operand, such as read/halt, start writing the main progrma that will compile all of them. 
