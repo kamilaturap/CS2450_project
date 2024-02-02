@@ -3,14 +3,28 @@ To-do list: (put your name next to the one you want to do)
 - Write the unit tests for your code as well. 
   - READ: Cameron: Done
   - WRITE: Cameron: Done
-  - LOAD: Mackay: NOT Done
-  - STORE: Mackay: NOT Done
+  - LOAD: Mackay: Done
+  - STORE: Mackay: Done
   - ADD: Anna: Done
   - SUBTRACT: Kamila: NOT Done
   - DIVIDE: Anna: Done
   - MULTIPLY: Kamila: NOT Done
-  - BRANCH: Mackay: NOT Done
+  - BRANCH: Mackay: Done
   - BRANCHNEG: Anna: NOT Done
   - BRANCHZERO: Kamila: NOT Done 
   - HALT: Cameron: Done
-If someone has an easier operand, such as read/halt, start writing the main progrma that will compile all of them. 
+If someone has an easier operand, such as read/halt, start writing the main program that will compile all of them.
+
+TOPICS FOR DISCUSSION ON MONDAY 02/05/2024:
+
+    - Is the add function printing the result just for debugging or will that be a permanent feature?
+    If it is meant to be a permanent feature it may be annoying later on with implementing more complex programs that
+    may need to iterate a counter and we dont necessarily need/want to display that to the user. (Mackay)
+
+    - How are we handling overflow when attempting to save a 5+ digit signed value to a memory location with the store
+    function. (Mackay)
+
+    - For the branch command, is the desired instruction to be branched to contained in the 2 digits after +40? Or are
+    the 2 digits after +40 a memory address that points to a memory location containing the branch target? It is
+    currently implemented in such a way that it regards the two digits following +40 as an address to branch to.
+    (Mackay)
