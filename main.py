@@ -12,6 +12,7 @@ import sys
 #import functions here:
 from cameron import *
 from anna import *
+from mackay import *
 
 def readProgram(file):
     """Reads in file containing a basicML program. Loads registers."""
