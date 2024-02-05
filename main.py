@@ -81,7 +81,9 @@ def main():
                 i = int(program[i][3:]) - 1
             #BRANCHNEG
             case '41':
-                print(operation)
+                if(accumulator < 0):
+                    i = int(program[i][3:]) - 1
+                    
             #BRANCHZERO
             case '42':
                 i = branchzero(program[i][3:], accumulator, i)            

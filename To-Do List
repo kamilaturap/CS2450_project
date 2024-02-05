@@ -10,7 +10,7 @@ To-do list: (put your name next to the one you want to do)
   - DIVIDE: Anna: Done
   - MULTIPLY: Kamila: Done
   - BRANCH: Mackay: Done
-  - BRANCHNEG: Anna: NOT Done
+  - BRANCHNEG: Anna: Done
   - BRANCHZERO: Kamila: Done 
   - HALT: Cameron: Done
 If someone has an easier operand, such as read/halt, start writing the main program that will compile all of them.
