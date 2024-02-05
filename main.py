@@ -9,9 +9,12 @@ UVsim will convert the first two digits into one of 12 operations.The second two
 The operations include: 10-read, 11-write, 20-load, 21-store, 30-add, 31-subtract, 32-divide, 33-multiply, 40-branch, 41-branchneg, 42-branchzero, and 43-halt.
 """
 import sys
-#import functions here:
+# import functions here:
 from cameron import *
 from anna import *
+from mackay import *
+from kamila import *
+
 
 def readProgram(file):
     """Reads in file containing a basicML program. Loads registers."""
@@ -23,6 +26,7 @@ def readProgram(file):
         for i in range(len(lst)):
             registers[i] = lst[i].strip()
     return registers
+
 
 def main():
     try:
@@ -48,10 +52,10 @@ def main():
         #load/store operations:
             #LOAD
             case '20':
-                print(operation)
+                accumulator = int(load(program[i][3:], program))
             #STORE
             case '21':
-                print(operation)
+                store(program[i][3:], program, accumulator)
 
         #Arithmetic operation:
             #ADD
@@ -60,25 +64,27 @@ def main():
                 print(accumulator)
             #SUBTRACT
             case '31':
-                print(operation)
+                accumulator = subtract(program[i][3:], program, accumulator)
+                print(accumulator)
             #DIVIDE
             case '32':
                 accumulator /= divide(program[i][3:], program)
                 print(accumulator)
             #MULTIPLY
             case '33':
-                print(operation)
+                accumulator = multiply(program[i][3:], program, accumulator)
+                print(accumulator)
 
         #Control operation:
             #BRANCH
             case '40':
-                print(operation)
+                i = int(program[i][3:]) - 1
             #BRANCHNEG
             case '41':
                 print(operation)
             #BRANCHZERO
             case '42':
-                print(operation)
+                i = branchzero(program[i][3:], accumulator, i)            
             #HALT
             case '43':
                 break
