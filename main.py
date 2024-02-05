@@ -13,6 +13,7 @@ import sys
 from cameron import *
 from anna import *
 from mackay import *
+from kamila import *
 
 
 def readProgram(file):
@@ -63,14 +64,16 @@ def main():
                 print(accumulator)
             #SUBTRACT
             case '31':
-                print(operation)
+                accumulator = subtract(program[i][3:], program, accumulator)
+                print(accumulator)
             #DIVIDE
             case '32':
                 accumulator /= divide(program[i][3:], program)
                 print(accumulator)
             #MULTIPLY
             case '33':
-                print(operation)
+                accumulator = multiply(program[i][3:], program, accumulator)
+                print(accumulator)
 
         #Control operation:
             #BRANCH
@@ -81,7 +84,7 @@ def main():
                 print(operation)
             #BRANCHZERO
             case '42':
-                print(operation)
+                i = branchzero(program[i][3:], accumulator, i)            
             #HALT
             case '43':
                 break
