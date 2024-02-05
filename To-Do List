@@ -6,12 +6,12 @@ To-do list: (put your name next to the one you want to do)
   - LOAD: Mackay: Done
   - STORE: Mackay: Done
   - ADD: Anna: Done
-  - SUBTRACT: Kamila: NOT Done
+  - SUBTRACT: Kamila: Done
   - DIVIDE: Anna: Done
-  - MULTIPLY: Kamila: NOT Done
+  - MULTIPLY: Kamila: Done
   - BRANCH: Mackay: Done
   - BRANCHNEG: Anna: NOT Done
-  - BRANCHZERO: Kamila: NOT Done 
+  - BRANCHZERO: Kamila: Done 
   - HALT: Cameron: Done
 If someone has an easier operand, such as read/halt, start writing the main program that will compile all of them.
 
@@ -28,3 +28,6 @@ TOPICS FOR DISCUSSION ON MONDAY 02/05/2024:
     the 2 digits after +40 a memory address that points to a memory location containing the branch target? It is
     currently implemented in such a way that it regards the two digits following +40 as an address to branch to.
     (Mackay)
+
+    - For testing purposes, I put the operation inside of the function rather than in main. (idk if there was a way to 
+      test the case itself, I just found this easier) (kamila)
