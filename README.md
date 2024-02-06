@@ -25,5 +25,4 @@ Documents needed:
     - will need at least 2 User Stories and 10-15 use cases outlining the functionality of the application
 - working prototype
 - unit tests file
-- spreadsheet that contains a description of all the unit tests: 
-https://uvu365-my.sharepoint.com/:x:/r/personal/10856721_uvu_edu/Documents/unittests.xlsx?d=waf3c5361bead4215918e096f1922ad12&csf=1&web=1&e=JxL75a
+- spreadsheet of the unit test descriptions: https://docs.google.com/spreadsheets/d/1NoJjhghQFSOFMNfYsTu85880Zwf2S9MkQ51FTwUdEjo/edit?usp=sharing
