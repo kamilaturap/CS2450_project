@@ -8,11 +8,25 @@ def test_subtract():
     assert result == 1000
 
 
+def test_subtract_fail():
+    register = {1:'1000'}
+    accumulator = 2000
+    result = subtract(1, register, accumulator)
+    assert result != 500
+
+
 def test_multiply():
     register = {1: '1000'}
     accumulator = 5
     result = multiply(1, register, accumulator)
     assert result == 5000
+
+
+def test_multiply_fail():
+    register = {1: '1000'}
+    accumulator = 5
+    result = multiply(1, register, accumulator)
+    assert result != 500
 
 
 def test_branchzero():
@@ -22,6 +36,8 @@ def test_branchzero():
     result_zero = branchzero(2, accumulator_zero, current_index_zero)
     assert result_zero == 1
 
+
+def test_branchnotzero():
     # don't branch when accumulator is not zero
     accumulator_nonzero = 5
     current_index_nonzero = 7
@@ -30,5 +46,8 @@ def test_branchzero():
 
 
 test_subtract()
+test_subtract_fail()
 test_multiply()
+test_multiply_fail()
 test_branchzero()
+test_branchnotzero()
