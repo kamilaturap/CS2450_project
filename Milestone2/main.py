@@ -93,6 +93,7 @@ def main():
 
             #default:
             case _:
+                i += 1
                 continue
         i += 1
     return
