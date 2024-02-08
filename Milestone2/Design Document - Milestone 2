@@ -22,7 +22,7 @@ HALT function stops running the program.
 
 Anna's use cases:
 Add
-    Actor: test_add function
+    Actor: add function
     System: math
     Goal: Successfully add the numbers 1000 and 100
 
@@ -33,19 +33,8 @@ Add
         4. adds that word to the number in the accumulator (100)
         5. accumulator then equals 1100
     
-    Actor: test_add_fail function
-    System: UVsim
-    Goal: Successfully add the numbers 1000 and 2000
-
-    Steps:
-        1. parse function code
-        2. get memory address (1)
-        3. takes the word and returns the number in the address (1000)
-        4. adds that word to the number int he accumulator (2000)
-        5. make sure the accumulator doesn't equal 500
-
 Divide
-    Actor: test_divide function
+    Actor: function
     System: UVsim
     Goal: Successfully divide numbers 
 
@@ -56,16 +45,6 @@ Divide
         4. divides that word to the number int he accumulator (2000)
         5. make sure the accumulator is equal to 2
 
-    Actor: test_divide_fail
-    System: math
-    Goal: Successfully divide numbers
-
-    Steps:
-        1. parse function code
-        2. get memory address (1)
-        3. takes the word and returns the number in the address (500)
-        4. divides that word to the number int he accumulator (4000)
-        5. make sure the accumulator is not equal to 300
 
 BranchNeg
     Actor: test_branchneg
