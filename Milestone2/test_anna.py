@@ -30,14 +30,14 @@ def test_divide_fail():
 def test_branchneg():
     accumulator = -2
     current_index = 4
-    result = branchneg(1, accumulator, current_index)
-    return 0
+    result = branchneg(2, accumulator, current_index)
+    assert result == 1
 
 def test_branchnotneg():
     accumulator = 10
     current_index = 6
     result = branchneg(1, accumulator, current_index)
-    return 0
+    assert result == 6
 
 
 test_add()
