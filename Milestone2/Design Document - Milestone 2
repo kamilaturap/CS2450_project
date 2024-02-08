@@ -4,10 +4,6 @@ User Stories:
 “As a student, I want to be able to write programs in basicML and have a virtual machine interpret my program, so that I can learn basic programming skills in basicML.”
 “ As a teacher, I want to have a tool that I can use to teach basicML and computer architecture ideas, so that students can have a better understanding of coding and the underlying machine language.”
 Use cases:
-Have up to 100 functional registers.
-Read program written in basicML, one command per line, into registers.
-Run program.
-READ function takes a terminal input and stores to memory.
 WRITE function prints word stored in memory to terminal.
 LOAD function stores a word in the accumulator from specified memory location.
 STORE function stores word in accumulator in specified memory location.
@@ -87,4 +83,14 @@ BranchNeg
         2. get the number in the accumulator (10)
         3. if the number is negative return specified location
         4. the number is not negative so it returns to the current index (6)
+
+Cameron's use cases:
+    Actor: Read function
+    System: Main program
+    Goal: takes a terminal input and stores to memory.
+    steps:
+        1.Parse function code.
+        2.Request input to be stored.
+        3.Find memory location.
+        4.Store input value.
         
