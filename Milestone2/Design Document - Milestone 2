@@ -93,4 +93,12 @@ Cameron's use cases:
         2.Request input to be stored.
         3.Find memory location.
         4.Store input value.
+
+    Actor: Write function
+    System: Main program
+    Goal: takes a value from a given memory location and prints it to the screen.
+    Steps:
+        1.Parse function code.
+        2.Find memory location.
+        3.Print value to console.
         
