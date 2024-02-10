@@ -78,7 +78,8 @@ def main():
         #Control operation:
             #BRANCH
             case '40':
-                i = int(program[i][3:]) - 1
+                i = branch(program[i][3:], program)
+
             #BRANCHNEG
             case '41':
                 i = branchneg(program[i][3:], accumulator, i)
