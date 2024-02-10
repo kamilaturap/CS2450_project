@@ -4,7 +4,6 @@ User Stories:
 “As a student, I want to be able to write programs in basicML and have a virtual machine interpret my program, so that I can learn basic programming skills in basicML.”
 “ As a teacher, I want to have a tool that I can use to teach basicML and computer architecture ideas, so that students can have a better understanding of coding and the underlying machine language.”
 Use cases:
-WRITE function prints word stored in memory to terminal.
 LOAD function stores a word in the accumulator from specified memory location.
 STORE function stores word in accumulator in specified memory location.
 ADD function adds a word in specified memory location to word in accumulator. Stores result in accumulator.
@@ -93,4 +92,12 @@ Cameron's use cases:
         2.Request input to be stored.
         3.Find memory location.
         4.Store input value.
+
+    Actor: Write function
+    System: Main program
+    Goal: takes a value from a given memory location and prints it to the screen.
+    Steps:
+        1.Parse function code.
+        2.Find memory location.
+        3.Print value to console.
         
