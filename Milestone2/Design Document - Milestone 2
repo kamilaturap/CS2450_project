@@ -100,4 +100,29 @@ Cameron's use cases:
         1.Parse function code.
         2.Find memory location.
         3.Print value to console.
-        
+
+Mackay's Use Cases:
+    Actor: Store Function
+    System: Main Program
+    Goal: To take the current accumulator value and store that value in a provided memory location.
+    Steps:
+        1.) Parse function code for specified memory location and accumulator value.
+        2.) Verify target memory location exists within the dictionary
+        3.) Replace data at that location with the provided accumulator value.
+
+    Actor: Load Function
+    System: Main Function
+    Goal: To replace the current accumulator value with the value contained at the provided memory address.
+    Steps:
+        1.) Parse function code for specified memory location.
+        2.) Verify target memory location exists within the dictionary
+        3.) Replace current accumulator value with the value stored at aforementioned memory location.
+
+    Actor: Branch Function
+    System: Main Function
+    Goal: To unconditionally jump to a specified memory location and execute the commands found there.
+    Steps:
+        1.) Validate that the jump is a valid memory address to jump to.
+        2.) Subtract one from the provided memory location to account for the main function loop adding one
+        after this command is finished.
+        3.) Return modified target location to update the i value in main.
