@@ -126,3 +126,31 @@ Mackay's Use Cases:
         2.) Subtract one from the provided memory location to account for the main function loop adding one
         after this command is finished.
         3.) Return modified target location to update the i value in main.
+
+Kamila's Use Cases: 
+    **Subtract**
+    Actor: Subtract Function
+    System: Main Program
+    Goal: To successfully add a word to the word currently stored in the accumulator
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Subtract the word in the memory address from the word in the accumulator
+        3. Return the difference to accumulator
+
+    **Multiply**
+    Actor: Multiply Function
+    System: Main Program
+    Goal: To successfully multiply a word with the word currently stored in the accumulator
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Multiply the word in the memory address with the word in the accumulator
+        3. Return the product to accumulator
+
+    **Branch Zero**
+    Actor: Branch Zero Function
+    System: Main Program
+    Goal: To successfully branch to a memory address when the value in the accumulator is zero
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Check if the value in accumulator is zero
+        3. If it is, branch to the memory address. If not, return to the current index and continue execution
