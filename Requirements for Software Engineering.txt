@@ -1,0 +1,20 @@
+﻿Functional Requirements:
+1. The system shall take a 4 digit number from the user.
+2. The system shall subtract the accumulator from the number in the specified register  provided by the user.
+3. The system shall navigate the memory using load and store
+4. The system shall navigate to a different section of instruction using the branch functions.
+5. The system shall parse user input, the first two digits as instructions and the second as registers.
+6. The system shall prompt user to enter the name of a file if one was not provided
+7. The system shall add the accumulator from the number in the specified register provided by the user.
+8. The system shall multiply the accumulator from the number in the specified register provided by the user.
+9. The system shall divide the accumulator from the number in the specified register provided by the user.
+10. The system will write to the screen a number from a memory location provided by the user.
+11. The system shall halt operation when the user enters 43 for the operation.
+12. The system shall send an error to the user if more than a 4 digit number is entered.
+13. The system shall use labeled buttons to run the program.
+14. The system shall load the inputs into a 100 word register.
+15. The system shall use classes to organize the registers and different functions.
+Non-Functional Requirements:
+1. The system shall show start and stop using labeled buttons.
+2. The system shall show the results of all functions and inputs on a rectangle.
+3. The system shall process all info and data in under 2 seconds.
