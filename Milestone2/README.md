@@ -1,5 +1,10 @@
 # Milestone 2
 
+**Scrum Master**: Kamila
+This program does not need any external requirements to run. Enter the file name when prompted, and follow along with any user input prompts. 
+
+
+
 I/O operation:
 READ = 10 Read a word from the keyboard into a specific location in memory.
 WRITE = 11 Write a word from a specific location in memory to screen.
@@ -19,10 +24,3 @@ BRANCH = 40 Branch to a specific location in memory
 BRANCHNEG = 41 Branch to a specific location in memory if the accumulator is negative.
 BRANCHZERO = 42 Branch to a specific location in memory if the accumulator is zero.
 HALT = 43 Stop the program
-
-Documents needed: 
-- document that describes the high-level functionality of the application:
-    - will need at least 2 User Stories and 10-15 use cases outlining the functionality of the application
-- working prototype
-- unit tests file
-- spreadsheet of the unit test descriptions: https://docs.google.com/spreadsheets/d/1NoJjhghQFSOFMNfYsTu85880Zwf2S9MkQ51FTwUdEjo/edit?usp=sharing

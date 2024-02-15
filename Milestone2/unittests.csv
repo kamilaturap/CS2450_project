@@ -1,0 +1,44 @@
+Unit Test Name,Description,Reference,Inputs,Expected Output,Pass or fail?
+,,,,,
+Subtract Pass,tests whether the subtract function subtracts correctly,test_subtract,"register= 1: '1000', accumulator = 2000",results == 1000,passed
+Subtract Fail,tests whether assert will fail if the subtraction is wrong,test_subtract_fail,"register= 1: '1000', accumulator = 2000",results != 500,passed
+Multiply Pass,tests if the multiply function multiplies correctly,test_multiply,"register= 1: '1000', accumulator = 5",results == 5000,passed
+Multiply Fail,tests if assert will fail if the multiplication is wrong,test_multiply_fail,"register= 1: '1000', accumulator = 5",results != 500,passed
+Branch Zero,tests if the function will branch when accumulator is zero,test_branchzero,"accumulator = 0, current_index_zero = 5",results == 1 (index),passed
+Branch Not Zero,tests if the function doesn't branch if the accumulator isn't zero ,test_branchnotzero,"acumulator = 5, current_index  = 7",result == current_index,passed
+,,,,,
+Add Pass,Tests whether the add function adds correctly or not,test_add,"register = 1: '1000', accumulator = 100",accumulator == 1100,passed
+Add fail,Tests to make sure it wasn't a wrong value,test_add_fail,"register = 1: '1000', accumulator = 2000",accumulator != 2000,passed
+Divide Pass,Tests whether the divide function divide correctly or not,test_divide,"register = 1: '1000', accumulator = 2000",accumulator == 2,passed
+Divide fail,Tests whether the delete function deletes correctly or not,test_divide_fail,"register = 1: '500', accumulator = 4000",accumulator != 300,passed
+Branch negative,Tests if the function branches when the accumulator is negative,test_branchneg,accumulator = -2 current_index = 4,result == 1,passed
+Branch not negative,Tests if the function branches when the accumulator is not negative,test_branchnotneg,accumulator = 10 current_index = 6,result == 6,passed
+,,,,,
+Test Read,tests if input is stored in correct register,test_read,"register = 5
+registersDictionary ={0:'', 1:'', 2:'', 3:'', 4:'', 5:''}
+user input = '1234'",dic[5] == '1234',passed
+Test End of Dictionary,tests if an input is stored in a newly created register if the input resgister is higher than the last in the dictionary.,test_read_new_register,"register = 6
+registersDictionary ={0:'', 1:'', 2:'', 3:'', 4:'', 5:''}
+user input = '1234'",dic[6] == '1234',passed
+Test write,tests if the value of a given register is printed to screen,test_write,"register = 5
+registersDictionary ={0:'', 1:'', 2:'', 3:'', 4:'', 5:'1234'}",captured.out == '1234\n',passed
+Test Write Blank register,tests if an empty string is printed to screen if register is empty.,test_write_empty_register,"register = 4
+registersDictionary ={0:'', 1:'', 2:'', 3:'', 4:'', 5:'1234'}",captured.out == '\n',passed
+Test Load,Tests if the function correctly loads to the accumulator the value contained within the specified memory location. ,test_load(),"register = {1: '9000'}
+accumulator = load(1, register)",accumulator == '9000',passed
+Test Load Invalid Input,Tests if the function correctly is interupted and an error is printed when an invalid memory location is specified.,test_load_index_error(),"register = {1: '9000'}
+accumulator = load(2, register)","accumulator != '9000'
+&
+""Target memory location out of bounds.""",passed
+Test Store,Tests if the function correctly updates the specified memory location with the provided data.,test_store(),"register = {1: '9000'}
+accumulator = load(1, register)",register[1] == '9000',passed
+Test Store Invalid Input,Tests if the function correctly is interupted and an error is printed when an invalid memory location is specified.,test_store_index_error(),"register = {1: '9000'}
+accumulator = load(2, register)","assert register[1] != '9000'
+&
+""Target memory location out of bounds.""",passed
+Test Branch,Tests if the function correctly returns the target memory location (- 1).,test_branch,"register = {1: ""0000"", 2: ""0000"", 3: ""0000""}
+i = branch(1, register)",i == 0,passed
+Test Branch Invalid Input,Tests if the function correctly is interupted and an error is printed when an invalid memory location is specified.,test_branch_index_error(),"register = {1: ""0000"", 2: ""0000"", 3: ""0000""}
+i = branch(5, register)","i != 4
+&
+""Target memory location out of bounds.""",passed

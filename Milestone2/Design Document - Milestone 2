@@ -4,7 +4,6 @@ User Stories:
 “As a student, I want to be able to write programs in basicML and have a virtual machine interpret my program, so that I can learn basic programming skills in basicML.”
 “ As a teacher, I want to have a tool that I can use to teach basicML and computer architecture ideas, so that students can have a better understanding of coding and the underlying machine language.”
 Use cases:
-WRITE function prints word stored in memory to terminal.
 LOAD function stores a word in the accumulator from specified memory location.
 STORE function stores word in accumulator in specified memory location.
 ADD function adds a word in specified memory location to word in accumulator. Stores result in accumulator.
@@ -72,4 +71,65 @@ Cameron's use cases:
         2.Request input to be stored.
         3.Find memory location.
         4.Store input value.
-        
+
+    Actor: Write function
+    System: Main program
+    Goal: takes a value from a given memory location and prints it to the screen.
+    Steps:
+        1.Parse function code.
+        2.Find memory location.
+        3.Print value to console.
+
+Mackay's Use Cases:
+    Actor: Store Function
+    System: Main Program
+    Goal: To take the current accumulator value and store that value in a provided memory location.
+    Steps:
+        1.) Parse function code for specified memory location and accumulator value.
+        2.) Verify target memory location exists within the dictionary
+        3.) Replace data at that location with the provided accumulator value.
+
+    Actor: Load Function
+    System: Main Function
+    Goal: To replace the current accumulator value with the value contained at the provided memory address.
+    Steps:
+        1.) Parse function code for specified memory location.
+        2.) Verify target memory location exists within the dictionary
+        3.) Replace current accumulator value with the value stored at aforementioned memory location.
+
+    Actor: Branch Function
+    System: Main Function
+    Goal: To unconditionally jump to a specified memory location and execute the commands found there.
+    Steps:
+        1.) Validate that the jump is a valid memory address to jump to.
+        2.) Subtract one from the provided memory location to account for the main function loop adding one
+        after this command is finished.
+        3.) Return modified target location to update the i value in main.
+
+Kamila's Use Cases: 
+    **Subtract**
+    Actor: Subtract Function
+    System: Main Program
+    Goal: To successfully add a word to the word currently stored in the accumulator
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Subtract the word in the memory address from the word in the accumulator
+        3. Return the difference to accumulator
+
+    **Multiply**
+    Actor: Multiply Function
+    System: Main Program
+    Goal: To successfully multiply a word with the word currently stored in the accumulator
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Multiply the word in the memory address with the word in the accumulator
+        3. Return the product to accumulator
+
+    **Branch Zero**
+    Actor: Branch Zero Function
+    System: Main Program
+    Goal: To successfully branch to a memory address when the value in the accumulator is zero
+    Steps: 
+        1. Parse function code for the operation instruction and memory address
+        2. Check if the value in accumulator is zero
+        3. If it is, branch to the memory address. If not, return to the current index and continue execution
