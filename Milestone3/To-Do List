@@ -5,17 +5,18 @@ Decide if we want to fix current code or start over.
     trunkation issue
     condense code files
 
-GUI
+fix use cases to be more generalized
+
+add more details to README.txt
+
+GUI:
   research
   wireframe
   code
 
-SRS as partners
-
-SRS as group
+Software requirement Specification Documentation:
+  individual
+  partner
+  group
 
 class definition document
-
-fix use cases to be more generalized
-
-add more details to README.txt
