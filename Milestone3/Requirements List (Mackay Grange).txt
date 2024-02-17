@@ -1,0 +1,26 @@
+Requirements List (Mackay Grange):
+
+
+	Functional Requirements (15):
+
+1.) The system shall have the capability to add two integers.
+2.) The system shall have the capability to subtract two integers.
+3.) The system shall handle overflow caused by addition or subtraction by ignoring all but the four least significant digits of the result.
+4.) The system shall have exactly 100 memory locations.
+5.) The system shall dedicate the first 80 memory locations to the execution of the provided program.
+6.) The system shall decicate the final 20 memory locations to the storage of program variables. 
+7.) The system shall have the capability to multiply two integers.
+8.) The system shall have the capability to divide two integers. 
+9.) The system shall handle overflow caused by multiplication and division by ignoring all but the four least significant digits of the result.
+10.) The system shall have a single register named the accumulator.
+11.) The system shall have the capability to save the current accumulator value in a specified memory location.
+12.) The system shall have the capability to load a saved value within a memory location to the accumulator, replacing the current accumulator value.
+13.) The system shall have the capability to read input from the user and store this value in a specified memory location.
+14.) The system shall have the capability to output to the console a saved value from a specified memory address.
+15.) The system shall recognize invalid or empty memory addresses and notify the user.
+
+	Non-Functional Requirements (3):
+
+1.) The system shall provide the user with applicable error information via the gui.
+2.) The system shall utilize industry standard design principles to develop the gui.
+3.) The system shall perform it's necessary functions efficiently, taking less than 5ms to display results, not including wait time for user input.
