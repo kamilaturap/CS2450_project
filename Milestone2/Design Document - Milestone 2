@@ -3,6 +3,7 @@ This program, UVsim, will read in a text file containing a basicML program writt
 User Stories:
 “As a student, I want to be able to write programs in basicML and have a virtual machine interpret my program, so that I can learn basic programming skills in basicML.”
 “ As a teacher, I want to have a tool that I can use to teach basicML and computer architecture ideas, so that students can have a better understanding of coding and the underlying machine language.”
+
 Use cases:
 LOAD function stores a word in the accumulator from specified memory location.
 STORE function stores word in accumulator in specified memory location.
@@ -17,7 +18,7 @@ HALT function stops running the program.
 
 Anna's use cases:
 Add
-    Actor: add function
+    Actor: test_add function
     System: math
     Goal: Successfully add the numbers 1000 and 100
 
@@ -28,8 +29,19 @@ Add
         4. adds that word to the number in the accumulator (100)
         5. accumulator then equals 1100
     
+    Actor: test_add_fail function
+    System: UVsim
+    Goal: Successfully add the numbers 1000 and 2000
+
+    Steps:
+        1. parse function code
+        2. get memory address (1)
+        3. takes the word and returns the number in the address (1000)
+        4. adds that word to the number int he accumulator (2000)
+        5. make sure the accumulator doesn't equal 500
+
 Divide
-    Actor: function
+    Actor: test_divide function
     System: UVsim
     Goal: Successfully divide numbers 
 
@@ -40,6 +52,16 @@ Divide
         4. divides that word to the number int he accumulator (2000)
         5. make sure the accumulator is equal to 2
 
+    Actor: test_divide_fail
+    System: math
+    Goal: Successfully divide numbers
+
+    Steps:
+        1. parse function code
+        2. get memory address (1)
+        3. takes the word and returns the number in the address (500)
+        4. divides that word to the number int he accumulator (4000)
+        5. make sure the accumulator is not equal to 300
 
 BranchNeg
     Actor: test_branchneg
@@ -47,76 +69,65 @@ BranchNeg
     Goal: When the accumulator is negative, branch to specified memory location
 
     Steps: 
-        1. parse function code for specified memory location
-        2. get the number in the accumulator (-2)
-        3. if the number is negative return specified location (1)
-        4. go to that location -1 so it actually starts on the location specified.
+        1. Parse function code for the operation instruction and memory address
+        2. Check if the value in accumulator is negative
+        3. If it is, branch to the memory address. If not, return to the current index and continue execution
 
-    Actor: test_branchnotneg
-    System: Registers dictionary
-    Goal: when the accumulator is not negative it goes back to the current index
-
-    Steps:
-        1. parse function code for specified memory location
-        2. get the number in the accumulator (10)
-        3. if the number is negative return specified location
-        4. the number is not negative so it returns to the current index (6)
-
-Cameron's use cases:
+READ: 
     Actor: Read function
     System: Main program
-    Goal: takes a terminal input and stores to memory.
+    Goal: To take in a terminal input and stores to memory.
     steps:
-        1.Parse function code.
-        2.Request input to be stored.
-        3.Find memory location.
-        4.Store input value.
+        1.Parse function code for the operation instruction and memory address.
+        2.Request input from the user to be stored.
+        4.Store input value in the memory address.
 
+WRITE:
     Actor: Write function
     System: Main program
-    Goal: takes a value from a given memory location and prints it to the screen.
+    Goal: To take a value from a given memory location and print it to the screen.
     Steps:
-        1.Parse function code.
-        2.Find memory location.
+        1.Parse function code for the operation instruction and memory address.
+        2.Find word in memory location.
         3.Print value to console.
 
-Mackay's Use Cases:
+STORE:
     Actor: Store Function
     System: Main Program
     Goal: To take the current accumulator value and store that value in a provided memory location.
     Steps:
-        1.) Parse function code for specified memory location and accumulator value.
-        2.) Verify target memory location exists within the dictionary
-        3.) Replace data at that location with the provided accumulator value.
+        1. Parse function code for operation instruction and memory address.
+        2. Find memory address. 
+        3. Replace data at that location with the current accumulator value.
 
+LOAD:
     Actor: Load Function
     System: Main Function
     Goal: To replace the current accumulator value with the value contained at the provided memory address.
     Steps:
-        1.) Parse function code for specified memory location.
-        2.) Verify target memory location exists within the dictionary
-        3.) Replace current accumulator value with the value stored at aforementioned memory location.
+        1. Parse function code for operation instruction and memory address.
+        2. Find memory address. 
+        3. Replace current accumulator value with the value stored at the memory location.
 
+BRANCH:
     Actor: Branch Function
     System: Main Function
     Goal: To unconditionally jump to a specified memory location and execute the commands found there.
     Steps:
-        1.) Validate that the jump is a valid memory address to jump to.
-        2.) Subtract one from the provided memory location to account for the main function loop adding one
-        after this command is finished.
-        3.) Return modified target location to update the i value in main.
+        1. Parse function code for operation instruction and memory address. 
+        2. Subtract one from the provided memory location to account for the main function loop adding one after this command is finished.
+        3. Return modified target location to update the i value in main.
 
-Kamila's Use Cases: 
-    **Subtract**
+SUBTRACT:
     Actor: Subtract Function
     System: Main Program
-    Goal: To successfully add a word to the word currently stored in the accumulator
+    Goal: To successfully subtract a word from the word currently stored in the accumulator
     Steps: 
         1. Parse function code for the operation instruction and memory address
         2. Subtract the word in the memory address from the word in the accumulator
         3. Return the difference to accumulator
 
-    **Multiply**
+MULTIPLY:
     Actor: Multiply Function
     System: Main Program
     Goal: To successfully multiply a word with the word currently stored in the accumulator
@@ -125,7 +136,7 @@ Kamila's Use Cases:
         2. Multiply the word in the memory address with the word in the accumulator
         3. Return the product to accumulator
 
-    **Branch Zero**
+BRANCHZERO:
     Actor: Branch Zero Function
     System: Main Program
     Goal: To successfully branch to a memory address when the value in the accumulator is zero

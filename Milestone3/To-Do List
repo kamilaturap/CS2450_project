@@ -1,20 +1,20 @@
 Decide if we want to fix current code or start over.
-  Code fixes:
+  Code fixes: - done
     load function error
     extra debug print statements
     trunkation issue
     condense code files
 
-fix use cases to be more generalized
+fix use cases to be more generalized - done
 
 add more details to README.txt
 
 GUI:
   research possible GUIs - tkinter
-  wireframe
+  wireframe - done
   code
 
-Software requirement Specification Documentation:
+Software requirement Specification Documentation: - done
   individual
   partner
   group
