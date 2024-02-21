@@ -1,39 +1,63 @@
 '''
-main.py: 
-put the whole thing into a class, and started working on taking input from user. the program pauses after it takes the file and idk why
-i'm lowkey going crazy
+cleaned it up a bit. read still isn't working, I think it's because the while loop is not reaching mainloop() after the read function, which would be why the widget does not appear
+the solution would be to create a separate tkinter loop to make it pop up in another screen which is not ideal but idk how else to do it
 '''
+import sys
+import tkinter as tk
+from tkinter import ttk, filedialog
+from Memory import *
 
-from tkinter_test import *
 
-
-class RunProgram:
+class Frame(tk.Tk):
     def __init__(self):
-        self.prog = Memory()
-        self.word_entry = None
-        self.root = tk.Tk()
-        self.gui = SimpleGUI(self.root)
+        super().__init__()
+        self.title("UVSim")
 
-    def main(self):
-        self.gui.call_screen()
+        window_width = 900
+        window_height = 600
+
+        screen_width = self.winfo_screenwidth()
+        screen_height = self.winfo_screenheight()
+
+        x_position = (screen_width - window_width) // 2
+        y_position = (screen_height - window_height) // 2
+
+        self.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
+
+        self.main = Main(self)
+
+        self.mainloop()
+
+
+class Main(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.input = None
+        self.prog = Memory()
+        self.readfile = ReadFile(self)
+        self.executor()
+
+    def executor(self):
         operation = ''
 
         while self.prog.pointer <= 99 and operation != '43':
             if len(self.prog.registers[self.prog.pointer]) == 5:
                 operation = self.prog.registers[self.prog.pointer][1:3]
                 mem = int(self.prog.registers[self.prog.pointer][3:])
+
             elif len(self.prog.registers[self.prog.pointer]) == 4:
                 operation = self.prog.registers[self.prog.pointer][0:2]
                 mem = int(self.prog.registers[self.prog.pointer][2:])
 
+            if operation == '10':
+                self.input = UserInput(self)
+                self.input.read_entry()
+                word_entry = self.input.get_entry()
+                self.prog.read(mem, word_entry)
+
             match operation:
                 # i/o operations:
                 # READ
-                case '10':
-                    # the program is either stopping here or in readProgram
-                    word_entry = self.gui.read_input()
-                    self.prog.read(mem, word_entry)
-                # WRITE
                 case '11':
                     self.prog.write(mem)
                 # load/store operations:
@@ -56,6 +80,7 @@ class RunProgram:
                 # MULTIPLY
                 case '33':
                     self.prog.multiply(mem)
+
                 # Control operation:
                 # BRANCH
                 case '40':
@@ -69,49 +94,21 @@ class RunProgram:
                 # HALT
                 case '43':
                     break
-                # default
+
+                # default:
                 case _:
                     self.prog.pointer += 1
                     continue
             self.prog.pointer += 1
-
-        self.root.mainloop()
-
-
-if __name__ == "__main__":
-    runner = RunProgram()
-    runner.main()
-
-'''
-tkinter.py file
-this file basically contains all the gui elements and functions
-'''
-
-import sys
-import tkinter as tk
-from tkinter import filedialog, messagebox
-from Memory import *
+        return
 
 
-class SimpleGUI:
-    def __init__(self, root):
-        self.word_entry = None
+class ReadFile(tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
         self.text_widget = None
-        self.root = root
-        self.button = None
         self.prog = Memory()
-
-    def read_input(self): #this function is not working 
-        while True:
-            self.word_entry = tk.Entry(self.root)
-            self.word_entry.pack()  # put the entry widget onto the screen
-            # break the loop temporarily to wait for user input
-            self.root.wait_window(self.word_entry.winfo_toplevel())
-            word = self.word_entry.get()
-            if word:
-                return word
-            else:
-                messagebox.showwarning("Warning", "Please enter a value.")
+        self.import_widgets()
 
     def import_file(self):
         file_path = filedialog.askopenfilename(title="Select a file",
@@ -123,44 +120,41 @@ class SimpleGUI:
                 self.text_widget.insert(tk.END, content)
             self.prog.readProgram(file_path)
 
-    def call_screen(self):
-        self.root.title("UVSim")
-
-        # Set window size and position
-        window_width = 800
-        window_height = 500
-
-        screen_width = self.root.winfo_screenwidth()
-        screen_height = self.root.winfo_screenheight()
-
-        x_position = (screen_width - window_width) // 2
-        y_position = (screen_height - window_height) // 2
-
-        self.root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
-
-        label = tk.Label(self.root, text="Welcome to UVSim!")
-        label.pack(pady=10)
-
-        import_button = tk.Button(self.root, text="Import File",
+    def import_widgets(self):
+        import_button = tk.Button(text="Import File",
                                   command=lambda: self.import_file())
         import_button.pack(pady=5)
 
-        self.text_widget = tk.Text(self.root, wrap="word", width=50, height=20)
+        self.text_widget = tk.Text(wrap="word", width=50, height=20)
         self.text_widget.pack(pady=5)
+        
 
-''' 
-memory.py 
+class UserInput (tk.Toplevel):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.entry = None
+        self.display_label = None
+        self.read_entry()
 
-only changed the read function
-'''
-    def read(self, targetMemoryLocation, word):
-        if word[0] in ['+', '-']:
-            while len(word) < 5:
-                word = word[0:1] + '0' + word[1:]
-            word = word[0:5]
-        else:
-            while len(word) < 4:
-                word = '0' + word
-            word = word[0:4]
-        self.registers[int(targetMemoryLocation)] = word
-        return
+    def read_entry(self):
+        enter = tk.Label(text="Please enter an input")
+        enter.pack()
+
+        self.entry = tk.Entry()
+        self.entry.pack()
+
+        submit_button = tk.Button(text="Submit", command=self.print_entry)
+        submit_button.pack()
+
+        self.display_label = tk.Label(text="")
+        self.display_label.pack()
+        
+    def print_entry(self):
+        entry_value = self.get_entry()
+        self.display_label.config(text=f"Entered value: {entry_value}")
+    
+    def get_entry(self):
+        return self.entry.get()
+
+
+Frame()
