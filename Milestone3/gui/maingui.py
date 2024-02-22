@@ -11,6 +11,7 @@ class Gui(EasyFrame):
         self.file = self.addTextField(text='',row=0, column=1)
         self.addLabel(text='Input program filepath:', row=0, column=0, background='#275D38', foreground='#A7A8AA')
         self.addButton(text='load program', row=0, column=2, command= self.handleButtonClick_loadFile)
+        self.addButton(text='Run', row=0, column=3, command= self.handleButtonClick_run)
         self.addLabel(text='Program Output:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
         self.progField = self.addTextArea(text=self.text, row=3, column= 0, columnspan= 3, width=20)
         self.addButton(text='clear', row=4, column=1, command= self.handleButtonClick_clear)
@@ -26,6 +27,11 @@ class Gui(EasyFrame):
     def handleButtonClick_loadFile(self):
         file = self.file.getText()
         self.prog.readProgram(file)
+        
+    def handleButtonClick_run(self):
+        self.run()
+        
+    def run(self):
         operation = ''
     
         while self.prog.pointer <= 99 and operation != '43':
