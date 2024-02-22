@@ -6,7 +6,6 @@ class Gui(EasyFrame):
     def __init__(self):
         EasyFrame.__init__(self, title="UV Sim", background='#275D38')
         self.prog = Memory()
-        self.row = 1
         self.text = ''
         self.inField = ''
         self.file = self.addTextField(text='',row=0, column=1)
@@ -14,10 +13,15 @@ class Gui(EasyFrame):
         self.addButton(text='load program', row=0, column=2, command= self.handleButtonClick_loadFile)
         self.addLabel(text='Program Output:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
         self.progField = self.addTextArea(text=self.text, row=3, column= 0, columnspan= 3, width=20)
-
+        self.addButton(text='clear', row=4, column=1, command= self.handleButtonClick_clear)
+    
     def guiOut(self, o):
-        self.text += o + '\n'
-        self.progField.setText(self.text)
+        self.progField.appendText(o + '\n')
+
+    def handleButtonClick_clear(self):
+        self.file.setText('')
+        self.progField.setText('')
+        self.prog = Memory()
 
     def handleButtonClick_loadFile(self):
         file = self.file.getText()
