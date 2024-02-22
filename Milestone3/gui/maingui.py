@@ -1,6 +1,5 @@
 from breezypythongui import EasyFrame
 from Memory import *
-from main import *
 
 class Gui(EasyFrame):
     def __init__(self):
