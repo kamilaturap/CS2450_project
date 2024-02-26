@@ -99,18 +99,18 @@ class Memory():
     #Control operation:
         #BRANCH
     def branch(self, targetMemoryLocation):
-        self.pointer = int(targetMemoryLocation)
+        self.pointer = int(targetMemoryLocation) - 1
         return
         #BRANCHNEG
     def branchneg(self, targetMemoryLocation):
         accum_val = int(self.accumulator)
         if accum_val < 0:
-            self.pointer = int(targetMemoryLocation)
+            self.pointer = int(targetMemoryLocation) - 1
         #BRANCHZERO
     def branchzero(self, targetMemoryLocation):
         accum_val = int(self.accumulator)
         if accum_val == 0:
-            self.pointer = int(targetMemoryLocation)
+            self.pointer = int(targetMemoryLocation) - 1
         return
     
     def inc_reg(self):
