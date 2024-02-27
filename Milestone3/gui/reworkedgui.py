@@ -29,9 +29,9 @@ class Gui(EasyFrame, tk.Tk):
         return self.prompterBox(title='input', promptString='enter signed four-digit word')
 
     def clear(self):
-        self.prog = Memory()
         self.file.setText('')
         self.progField.setText('')
+        self.run.clear()
 
 
 class RunProgram:
@@ -39,6 +39,9 @@ class RunProgram:
         self.gui = Gui(self)
         self.prog = Memory()
 
+    def clear(self): 
+        self.prog.clear()
+        
     def load_file(self):
         self.prog.readProgram(self.gui.file.getText())
 
