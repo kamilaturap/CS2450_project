@@ -5,7 +5,14 @@ class Memory():
             self.registers[i] = '+0000'
         self.accumulator = "+0000"
         self.pointer = 0
-
+        
+    def clear(self): 
+        self.registers = {}
+        for i in range(100):
+            self.registers[i] = '+0000'
+        self.accumulator = "+0000"
+        self.pointer = 0
+    
     def readProgram(self, file):
         """Reads in file containing a basicML program. Loads registers."""
         with open(file, "r") as program:
