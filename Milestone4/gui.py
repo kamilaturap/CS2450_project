@@ -1,6 +1,3 @@
-'''
-This file does the same thing as maingui.py but it separates the code based on the presentation layer and the business model layer.
-'''
 from tkinter import filedialog
 
 from breezypythongui import EasyFrame
@@ -19,13 +16,15 @@ class Gui(EasyFrame, tk.Tk):
         # self.addLabel(text='Input program filepath:', row=0, column=0, background='#275D38', foreground='#A7A8AA')
         self.addButton(text='Load program', row=0, column=1, command=self.run.load_file)
         self.addButton(text='Run', row=0, column=3, command=self.run.execute_program)
-        self.addLabel(text='Program Output:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
+        self.addLabel(text='Program Registers:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
         self.progField = self.addTextArea(text=self.text, row=3, column=0, columnspan=3, width=20)
-        self.addButton(text='Clear', row=4, column=1, command=self.clear)
+        self.addButton(text='Clear', row=6, column=1, command=self.clear)
         self.addButton(text="Import File", row=0, column=0, command=self.import_file)
+        self.addLabel(text="Output: ", row=4, column=0, background='#275D38', foreground='#A7A8AA')
+        self.output_text = self.addTextArea(text='', row=5, column=0, columnspan=2, width=10, height=5)
 
     def output(self, o):
-        self.progField.appendText(o + '\n')
+        self.output_text.appendText(o + '\n')
 
     def popup(self):
         return self.prompterBox(title='input', promptString='enter signed four-digit word')
@@ -34,10 +33,16 @@ class Gui(EasyFrame, tk.Tk):
         self.load.setText('')
         self.progField.setText('')
         self.run.clear()
+        self.output_text.setText('')
 
     def import_file(self):
+        self.clear()
         self.file_path = filedialog.askopenfilename(title="Select a file",
-                                               filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
+                                                    filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
+        with open(self.file_path, "r") as file:
+            content = file.read()
+            self.progField.delete('1.0', tk.END)
+            self.progField.insert(tk.END, content)
 
     def get_file(self):
         return self.file_path
@@ -47,8 +52,6 @@ class Gui(EasyFrame, tk.Tk):
 
     def set_registers(self, content):
         self.progField.appendText(tk.END, content)
-
-# consider automatically loading the program as soon as user inputs file, rather than making them separately load it
 
 
 class RunProgram:
@@ -63,8 +66,6 @@ class RunProgram:
         self.prog.clear()
         self.gui.load_program()
         self.prog.readProgram(self.gui.get_file())
-
-
 
     def execute_program(self):
         operation = ''
@@ -132,11 +133,3 @@ class RunProgram:
 
 runner = RunProgram()
 runner.gui.mainloop()
-
-
-'''printing the registers to the file/ not working
-if self.gui.get_file():
-    with open((self.gui.get_file(), "r")) as file:
-        content = file.read()
-        self.gui.set_registers(content)
-'''
