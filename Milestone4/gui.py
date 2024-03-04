@@ -24,18 +24,24 @@ class Gui(EasyFrame, tk.Tk):
         self.output_text = self.addTextArea(text='', row=5, column=0, columnspan=2, width=10, height=5)
 
     def output(self, o):
+        #One parameter: o, the text to be output.
+        #Function: prints out the text passed through o.
         self.output_text.appendText(o + '\n')
 
     def popup(self):
+        #Function: small popup prompting the user for an input
         return self.prompterBox(title='input', promptString='enter signed four-digit word')
 
     def clear(self):
+        #Function: resets all text fields and all information in the memory class.
         self.load.setText('')
         self.progField.setText('')
         self.run.clear()
         self.output_text.setText('')
 
     def import_file(self):
+        #Function: first clears all registers then prompts the user to select a file from a directory.
+        #         The function then opens the file and reads in the text to be edited.
         self.clear()
         self.file_path = filedialog.askopenfilename(title="Select a file",
                                                     filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
@@ -45,12 +51,15 @@ class Gui(EasyFrame, tk.Tk):
             self.progField.insert(tk.END, content)
 
     def get_file(self):
+        #Function: A getter for the file_path variable
         return self.file_path
 
     def load_program(self):
+        #Function: text that prints out when the program gets loaded.
         self.load.setText('Loaded')
 
     def set_registers(self, content):
+        #Function: puts the text from the text file into the program box.
         self.progField.appendText(tk.END, content)
 
 
