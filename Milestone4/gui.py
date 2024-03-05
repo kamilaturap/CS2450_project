@@ -41,7 +41,7 @@ class Gui(EasyFrame, tk.Tk):
 
     def import_file(self):
         #Function: first clears all registers then prompts the user to select a file from a directory.
-        #         The function then opens the file and reads in the text to be edited.
+        #         The function then opens the file and reads in the text to a text box to be edited.
         self.clear()
         self.file_path = filedialog.askopenfilename(title="Select a file",
                                                     filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
@@ -55,11 +55,12 @@ class Gui(EasyFrame, tk.Tk):
         return self.file_path
 
     def load_program(self):
-        #Function: text that prints out when the program gets loaded.
+        #Function: text that prints out when the program gets loaded letting the user know the load
+        #         was successful
         self.load.setText('Loaded')
 
     def set_registers(self, content):
-        #Function: puts the text from the text file into the program box.
+        #Function: loads the function calls from the text file into the program.
         self.progField.appendText(tk.END, content)
 
 
@@ -69,14 +70,19 @@ class RunProgram:
         self.prog = Memory()
 
     def clear(self):
+        #Function: clears everything that was there.
         self.prog.clear()
 
     def load_file(self):
+        #Function: clears everything, loads the text file into the program then loads the text
+        #         into the editor box.
         self.prog.clear()
         self.gui.load_program()
         self.prog.readProgram(self.gui.get_file())
 
     def execute_program(self):
+        #Function: Takes the function calls from the text file and parses it. It then will call
+        #         program to run the provided function with the specified register.
         operation = ''
 
         while self.prog.pointer <= 99 and operation != '43':
