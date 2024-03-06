@@ -22,6 +22,10 @@ class Memory:
                 self.registers[i] = lst[i].strip()
         return
 
+    def readTextArea(self, input):
+        lst = input.split('/n')
+        for i in range(len(lst)):
+            self.registers[i] = lst[i].strip()
     # i/o operations:
     # READ
     def read(self, targetMemoryLocation, word):

@@ -22,25 +22,26 @@ class Gui(EasyFrame, tk.Tk):
         self.addButton(text="Import File", row=0, column=0, command=self.import_file)
         self.addLabel(text="Output: ", row=4, column=0, background='#275D38', foreground='#A7A8AA')
         self.output_text = self.addTextArea(text='', row=5, column=0, columnspan=2, width=10, height=5)
+        self.addButton(text="Save Changes", row=6, column=2, command=self.run.edit_file)
 
     def output(self, o):
-        #One parameter: o, the text to be output.
-        #Function: prints out the text passed through o.
+        # One parameter: o, the text to be output.
+        # Function: prints out the text passed through o.
         self.output_text.appendText(o + '\n')
 
     def popup(self):
-        #Function: small popup prompting the user for an input
+        # Function: small popup prompting the user for an input
         return self.prompterBox(title='input', promptString='enter signed four-digit word')
 
     def clear(self):
-        #Function: resets all text fields and all information in the memory class.
+        # Function: resets all text fields and all information in the memory class.
         self.load.setText('')
         self.progField.setText('')
         self.run.clear()
         self.output_text.setText('')
 
     def import_file(self):
-        #Function: first clears all registers then prompts the user to select a file from a directory.
+        # Function: first clears all registers then prompts the user to select a file from a directory.
         #         The function then opens the file and reads in the text to a text box to be edited.
         self.clear()
         self.file_path = filedialog.askopenfilename(title="Select a file",
@@ -51,16 +52,16 @@ class Gui(EasyFrame, tk.Tk):
             self.progField.insert(tk.END, content)
 
     def get_file(self):
-        #Function: A getter for the file_path variable
+        # Function: A getter for the file_path variable
         return self.file_path
 
     def load_program(self):
-        #Function: text that prints out when the program gets loaded letting the user know the load
+        # Function: text that prints out when the program gets loaded letting the user know the load
         #         was successful
         self.load.setText('Loaded')
 
     def set_registers(self, content):
-        #Function: loads the function calls from the text file into the program.
+        # Function: loads the function calls from the text file into the program.
         self.progField.appendText(tk.END, content)
 
 
@@ -70,18 +71,18 @@ class RunProgram:
         self.prog = Memory()
 
     def clear(self):
-        #Function: clears everything that was there.
+        # Function: clears everything that was there.
         self.prog.clear()
 
     def load_file(self):
-        #Function: clears everything, loads the text file into the program then loads the text
+        # Function: clears everything, loads the text file into the program then loads the text
         #         into the editor box.
         self.prog.clear()
         self.gui.load_program()
         self.prog.readProgram(self.gui.get_file())
 
     def execute_program(self):
-        #Function: Takes the function calls from the text file and parses it. It then will call
+        # Function: Takes the function calls from the text file and parses it. It then will call
         #         program to run the provided function with the specified register.
         operation = ''
 
@@ -144,6 +145,12 @@ class RunProgram:
                     continue
             self.prog.pointer += 1
         return
+
+    def edit_file(self):
+        # attempt at saving the edited text area to be able to run again with the changes, so far does nothing
+        self.gui.output_text.setText('')
+        edited_file = self.gui.progField.get('1.0')
+        self.prog.readTextArea(edited_file)
 
 
 runner = RunProgram()
