@@ -7,6 +7,7 @@ import tkinter as tk
 class Gui(EasyFrame, tk.Tk):
     def __init__(self, run):
         EasyFrame.__init__(self, title="UV Sim", background='#275D38')
+        self.initial_text = None
         self.file_save = None
         self.file_path = None
         self.prog = None
@@ -22,7 +23,7 @@ class Gui(EasyFrame, tk.Tk):
         self.addButton(text="Import File", row=0, column=0, command=self.import_file)
         self.addLabel(text="Output: ", row=5, column=0, background='#275D38', foreground='#A7A8AA')
         self.output_text = self.addTextArea(text='', row=6, column=0, columnspan=2, width=5, height=5)
-        self.addButton(text="Save Changes", row=7, column=2, command=self.save_file)
+        self.addButton(text="Save Changes", row=7, column=2, command=self.save_file, state='disabled')
 
     def run_program(self):
         """Runs the main program that will parse through the commands."""
@@ -62,6 +63,10 @@ class Gui(EasyFrame, tk.Tk):
         self.run.load_file()
         self.load.setText('Loaded')
 
+    def enable_save(self):
+        if self.progField.get('1.0', tk.END) != self.initial_text:
+            self.addButton(text="Save Changes", row=7, column=2, command=self.save_file)
+
     def set_registers(self, content):
         """Function: loads the function calls from the text file into the program."""
         self.progField.appendText(tk.END, content)
@@ -77,6 +82,8 @@ class Gui(EasyFrame, tk.Tk):
             content = file.read()
             self.progField.delete('1.0', tk.END)
             self.progField.insert(tk.END, content)
+
+        self.initial_text = self.progField.get('1.0', tk.END)
 
     def get_file(self):
         """Function: A getter for the file_path variable"""
