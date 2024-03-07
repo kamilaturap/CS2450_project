@@ -42,6 +42,14 @@ class Gui(EasyFrame, tk.Tk):
 
     def clear(self):
         """Function: resets all text fields and all information in the memory class."""
+        self.output_text.appendText(o + '\n')
+
+    def popup(self):
+        '''Function: small popup prompting the user for an input'''
+        return self.prompterBox(title='input', promptString='enter signed four-digit word')
+
+    def clear(self):
+        '''Function: resets all text fields and all information in the memory class.'''
         self.load.setText('')
         self.progField.setText('')
         self.run.clear()
@@ -79,3 +87,4 @@ class Gui(EasyFrame, tk.Tk):
         self.file_save = filedialog.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
         self.file_save.write(self.progField.get('1.0', tk.END))
         self.file_save.close()
+     
