@@ -16,10 +16,9 @@ class Memory:
 
     def readProgram(self, file):
         """Reads in file containing a basicML program. Loads registers."""
-        with open(file, "r") as program:
-            lst = program.readlines()
-            for i in range(len(lst)):
-                self.registers[i] = lst[i].strip()
+        lst = file.split("\n")
+        for i in range(len(lst)):
+            self.registers[i] = lst[i].strip()
         return
 
     # i/o operations:
