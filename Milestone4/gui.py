@@ -24,24 +24,24 @@ class Gui(EasyFrame, tk.Tk):
         self.output_text = self.addTextArea(text='', row=5, column=0, columnspan=2, width=10, height=5)
 
     def output(self, o):
-        #One parameter: o, the text to be output.
-        #Function: prints out the text passed through o.
+        '''One parameter: o, the text to be output.
+           Function: prints out the text passed through o.'''
         self.output_text.appendText(o + '\n')
 
     def popup(self):
-        #Function: small popup prompting the user for an input
+        '''Function: small popup prompting the user for an input'''
         return self.prompterBox(title='input', promptString='enter signed four-digit word')
 
     def clear(self):
-        #Function: resets all text fields and all information in the memory class.
+        '''Function: resets all text fields and all information in the memory class.'''
         self.load.setText('')
         self.progField.setText('')
         self.run.clear()
         self.output_text.setText('')
 
     def import_file(self):
-        #Function: first clears all registers then prompts the user to select a file from a directory.
-        #         The function then opens the file and reads in the text to a text box to be edited.
+        '''Function: first clears all registers then prompts the user to select a file from a directory.
+            The function then opens the file and reads in the text to a text box to be edited.'''
         self.clear()
         self.file_path = filedialog.askopenfilename(title="Select a file",
                                                     filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
@@ -51,16 +51,16 @@ class Gui(EasyFrame, tk.Tk):
             self.progField.insert(tk.END, content)
 
     def get_file(self):
-        #Function: A getter for the file_path variable
+        '''Function: A getter for the file_path variable'''
         return self.file_path
 
     def load_program(self):
-        #Function: text that prints out when the program gets loaded letting the user know the load
-        #         was successful
+        '''Function: text that prints out when the program gets loaded letting the user know the load
+            was successful'''
         self.load.setText('Loaded')
 
     def set_registers(self, content):
-        #Function: loads the function calls from the text file into the program.
+        '''Function: loads the function calls from the text file into the program.'''
         self.progField.appendText(tk.END, content)
 
 
@@ -70,19 +70,19 @@ class RunProgram:
         self.prog = Memory()
 
     def clear(self):
-        #Function: clears everything that was there.
+        '''Function: clears everything that was there.'''
         self.prog.clear()
 
     def load_file(self):
-        #Function: clears everything, loads the text file into the program then loads the text
-        #         into the editor box.
+        '''Function: clears everything, loads the text file into the program then loads the text
+            into the editor box.'''
         self.prog.clear()
         self.gui.load_program()
         self.prog.readProgram(self.gui.get_file())
 
     def execute_program(self):
-        #Function: Takes the function calls from the text file and parses it. It then will call
-        #         program to run the provided function with the specified register.
+        '''Function: Takes the function calls from the text file and parses it. It then will call
+            program to run the provided function with the specified register.'''
         operation = ''
 
         while self.prog.pointer <= 99 and operation != '43':
