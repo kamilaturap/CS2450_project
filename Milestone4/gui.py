@@ -71,6 +71,9 @@ class Gui(EasyFrame, tk.Tk):
         """Function: loads the function calls from the text file into the program."""
         self.progField.appendText(tk.END, content)
 
+    def invalid_input(self):
+        self.messageBox(title="Error", message="The allotted commands exceeds 100 registers. Please reduce amount.")
+
     def import_file(self):
         """Function: first clears all registers then prompts the user to select a file from a directory.
         The function then opens the file and reads in the text to a text box to be edited.
