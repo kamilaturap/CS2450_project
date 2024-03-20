@@ -21,6 +21,8 @@ class RunProgram:
     def execute_program(self):
         """Function: Takes the function calls from the text file and parses it. It then will call
         program to run the provided function with the specified register."""
+        self.gui.enable_save()
+
         operation = ''
 
         while self.prog.pointer <= 99 and operation != '43':
