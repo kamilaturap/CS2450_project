@@ -141,16 +141,24 @@ class MainScreen(tk.Frame):
         settings_button.grid(row=0, column=0,)
 
 
+def update_primary_color(screen, hex_value:str) -> None:
+
+    hex_value = "#" + hex_value
+
+    screen.controller.primary_color = hex_value
+
+    screen.subframe_0.configure(bg=hex_value)
+    screen.subframe_1.configure(bg=hex_value)
+    screen.subframe_1_0.configure(bg=hex_value)
+    screen.subframe_2.configure(bg=hex_value)
+    screen.subframe_x.configure(bg=hex_value)
 
 class SettingsScreen(tk.Frame):
-
-    def change_primary_color(self, hex_value):
-        self.controller.primary_color = str(hex_value)
-
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
+        self.controller = controller
         self.configure(bg=controller.primary_color, padx=0, pady=0)
 
         self.subframe_0 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
@@ -205,7 +213,7 @@ class SettingsScreen(tk.Frame):
         self.hex_text_box_0 = tk.Entry(self.subframe_1_1, width=10, bg=BG_COLOR_GREY_DEFAULT)
         self.hex_text_box_0.grid(row=0, column=1)
 
-        self.apply_button_0 = tk.Button(self.subframe_1_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: self.update_primary_color(str(hex_text_box_0.get())))
+        self.apply_button_0 = tk.Button(self.subframe_1_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: update_primary_color(self, str(self.hex_text_box_0.get())))
         self.apply_button_0.configure(font=FONT_TUPLE_REG)
         self.apply_button_0.grid(row=0, column=2, padx=10)
 
