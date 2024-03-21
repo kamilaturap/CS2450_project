@@ -14,16 +14,18 @@ class Gui(EasyFrame, tk.Tk):
         self.run = run
         self.text = ''
         self.inField = ''
-        self.load = self.addTextField(text='', row=0, column=2)
-        self.addButton(text='Load program', row=0, column=1, command=self.load_program)
-        self.addButton(text='Run', row=0, column=3, command=self.run_program)
-        self.addLabel(text='Program Registers:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
-        self.progField = self.addTextArea(text=self.text, row=3, column=0, columnspan=3, rowspan=2, width=5, height=20)
-        self.addButton(text='Clear', row=7, column=1, command=self.clear)
-        self.addButton(text="Import File", row=0, column=0, command=self.import_file)
-        self.addLabel(text="Output: ", row=5, column=0, background='#275D38', foreground='#A7A8AA')
-        self.output_text = self.addTextArea(text='', row=6, column=0, columnspan=2, width=5, height=5)
-        self.addButton(text="Save Changes", row=7, column=2, command=self.save_file, state='disabled')
+        self.load = self.addTextField(text='', row=6, column=2)
+        self.addButton(text='Load Registers', row=6, column=1, command=self.load_program)
+        self.addButton(text='Run Program', row=6, column=3, command=self.run_program)
+        self.addLabel(text='Program Registers:', row=3, column=1, background='#275D38', foreground='#A7A8AA')
+        self.progField = self.addTextArea(text=self.text, row=4, column=1, columnspan=3, rowspan=2, width=5, height=20)
+        self.addButton(text='  Close File  ', row=9, column=3, command=self.clear)
+        self.addButton(text="  Open File  ", row=1, column=1, command=self.import_file)
+        self.addLabel(text="Output: ", row=7, column=1, background='#275D38', foreground='#A7A8AA')
+        self.output_text = self.addTextArea(text='', row=8, column=1, columnspan=3, width=5, height=5)
+        self.addButton(text="  Save File  ", row=9, column=1, command=self.save_file, state='disabled')
+        self.addLabel(text='', row=0, column=0, background='#275D38')
+        self.addLabel(text='', row=10, column=4, background='#275D38')
 
     def run_program(self):
         """Runs the main program that will parse through the commands."""
@@ -35,14 +37,6 @@ class Gui(EasyFrame, tk.Tk):
         One parameter: o, the text to be output.
         Function: prints out the text passed through o.
         """
-        self.output_text.appendText(o + '\n')
-
-    def popup(self):
-        """Function: small popup prompting the user for an input"""
-        return self.prompterBox(title='input', promptString='enter signed four-digit word')
-
-    def clear(self):
-        """Function: resets all text fields and all information in the memory class."""
         self.output_text.appendText(o + '\n')
 
     def popup(self):
