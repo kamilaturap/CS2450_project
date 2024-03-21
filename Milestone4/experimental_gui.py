@@ -1,5 +1,9 @@
 import tkinter as tk
 from tkinter import font as tkfont
+from tkinter import filedialog as tkfile
+
+from breezypythongui import EasyFrame
+from Memory import *
 
 BG_COLOR_GREEN_DEFAULT = "#275d38"
 BG_COLOR_GREY_DEFAULT = "#e8e8e8"
@@ -12,7 +16,6 @@ FONT_TUPLE_TEXT = ("Cascadia Code", 8)
 
 
 class UVSimGui(tk.Tk):
-
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
@@ -367,7 +370,6 @@ def update_primary_color(screen, hex_value: str, red_value: int, green_value: in
     screen.controller.frames["MainScreen"].settings_button.configure(fg=hex_value)
 
 def update_secondary_color(screen, hex_value: str, red_value: int, green_value: int, blue_value: int) -> None:
-
     current_color = screen.controller.secondary_color
     current_red = int(current_color[1:3], 16)
     current_green = int(current_color[3:5], 16)
