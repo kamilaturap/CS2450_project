@@ -1,7 +1,7 @@
 from tkinter import filedialog
 
 from breezypythongui import EasyFrame
-from Memory import *
+from memory import *
 import tkinter as tk
 
 

@@ -3,7 +3,7 @@ from tkinter import font as tkfont
 from tkinter import filedialog as tkfile
 
 from breezypythongui import EasyFrame
-from Memory import *
+from memory import *
 
 BG_COLOR_GREEN_DEFAULT = "#275d38"
 BG_COLOR_GREY_DEFAULT = "#e8e8e8"
