@@ -17,13 +17,14 @@ class Gui(EasyFrame, tk.Tk):
         self.load = self.addTextField(text='', row=0, column=2)
         self.addButton(text='Load program', row=0, column=1, command=self.load_program)
         self.addButton(text='Run', row=0, column=3, command=self.run_program)
-        self.addLabel(text='Program Registers:', row=2, column=0, background='#275D38', foreground='#A7A8AA')
+        self.addLabel(text='Program Registers:', row=2, column=0)
         self.progField = self.addTextArea(text=self.text, row=3, column=0, columnspan=3, rowspan=2, width=5, height=20)
         self.addButton(text='Clear', row=7, column=1, command=self.clear)
         self.addButton(text="Import File", row=0, column=0, command=self.import_file)
-        self.addLabel(text="Output: ", row=5, column=0, background='#275D38', foreground='#A7A8AA')
+        self.addLabel(text="Output: ", row=5, column=0)
         self.output_text = self.addTextArea(text='', row=6, column=0, columnspan=2, width=5, height=5)
         self.addButton(text="Save Changes", row=7, column=2, command=self.save_file, state='disabled')
+        self.addButton(text="Settings", row=7, column=1, command=self.open_settings)
 
     def run_program(self):
         """Runs the main program that will parse through the commands."""
@@ -35,14 +36,6 @@ class Gui(EasyFrame, tk.Tk):
         One parameter: o, the text to be output.
         Function: prints out the text passed through o.
         """
-        self.output_text.appendText(o + '\n')
-
-    def popup(self):
-        """Function: small popup prompting the user for an input"""
-        return self.prompterBox(title='input', promptString='enter signed four-digit word')
-
-    def clear(self):
-        """Function: resets all text fields and all information in the memory class."""
         self.output_text.appendText(o + '\n')
 
     def popup(self):
@@ -97,4 +90,22 @@ class Gui(EasyFrame, tk.Tk):
         self.file_save = filedialog.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
         self.file_save.write(self.progField.get('1.0', tk.END))
         self.file_save.close()
-     
+
+    def open_settings(self):
+        settings = SettingsPage(self)
+
+
+class SettingsPage(EasyFrame):
+    def __init__(self, parent):
+        self.parent = parent
+        EasyFrame.__init__(self, title="Settings", background='#275D38')
+
+        self.addLabel(text="Enter Hex Code:", row=0, column=0, sticky="W")
+        self.hex_entry = self.addTextField(text="", row=0, column=1)
+        self.addButton(text="Apply", row=1, column=0, columnspan=2, command=self.apply_color)
+
+    def apply_color(self):
+        hex_code = self.hex_entry.getText()
+        self.parent.setBackground(hex_code)
+        self.setBackground(hex_code)
+        self.parent.show()
