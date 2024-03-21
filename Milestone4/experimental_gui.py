@@ -4,6 +4,7 @@ from tkinter import font as tkfont
 BG_COLOR_GREEN_DEFAULT = "#275d38"
 BG_COLOR_GREY_DEFAULT = "#e8e8e8"
 BG_COLOR_WHITE_DEFAULT = "#FFFFFF"
+BG_COLOR_BLACK_DEFAULT = "#000000"
 
 FONT_TUPLE_TITLE = ("Vermin Vibes 2 Soft", 48)
 FONT_TUPLE_REG = ("Cascadia Code Bold", 8)
@@ -83,7 +84,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_0_1.configure(bg=controller.primary_color)
         self.subframe_1_0_1.pack()
 
-        self.selected_file_text_box = tk.Entry(self.subframe_1_0_1, width=35, bg=controller.secondary_color)
+        self.selected_file_text_box = tk.Entry(self.subframe_1_0_1, width=35, bg=controller.secondary_color, fg=BG_COLOR_BLACK_DEFAULT, font=FONT_TUPLE_TEXT)
         self.selected_file_text_box.grid(row=0, column=0, padx=5)
 
         self.subframe_1_1 = tk.LabelFrame(self.subframe_1, padx=5, pady=5, bd=0)
@@ -111,7 +112,7 @@ class MainScreen(tk.Frame):
         self.subframe_2.pack()
 
         self.scroll_y = tk.Scrollbar(self.subframe_2)
-        self.text_area_program = tk.Text(self.subframe_2, bg=BG_COLOR_WHITE_DEFAULT, bd=5, font=FONT_TUPLE_TEXT, relief="ridge", yscrollcommand=self.scroll_y.set, width=88, height=10)
+        self.text_area_program = tk.Text(self.subframe_2, bg=BG_COLOR_WHITE_DEFAULT, fg=BG_COLOR_BLACK_DEFAULT, bd=5, font=FONT_TUPLE_TEXT, relief="ridge", yscrollcommand=self.scroll_y.set, width=88, height=10)
         self.text_area_program.grid(row=0, column=0, sticky=tk.N+tk.S+tk.W+tk.E, pady=10)
         self.scroll_y.grid(row=0, column=1, sticky=tk.N+tk.S, pady=10)
 
@@ -128,7 +129,7 @@ class MainScreen(tk.Frame):
         self.subframe_4.pack()
 
         self.scroll_y_2 = tk.Scrollbar(self.subframe_4)
-        self.text_area_output = tk.Text(self.subframe_4, bg=BG_COLOR_WHITE_DEFAULT, bd=5, font=FONT_TUPLE_TEXT, relief="ridge", yscrollcommand=self.scroll_y_2.set, width=88, height=10)
+        self.text_area_output = tk.Text(self.subframe_4, bg=BG_COLOR_WHITE_DEFAULT, fg=BG_COLOR_BLACK_DEFAULT, bd=5, font=FONT_TUPLE_TEXT, relief="ridge", yscrollcommand=self.scroll_y_2.set, width=88, height=10)
         self.text_area_output.grid(row=0, column=0, sticky=tk.N+tk.S+tk.W+tk.E, pady=10)
         self.scroll_y_2.grid(row=0, column=1, sticky=tk.N+tk.S, pady=10)
 
@@ -200,7 +201,7 @@ class SettingsScreen(tk.Frame):
         self.hex_label_0.configure(font=FONT_TUPLE_REG)
         self.hex_label_0.grid(row=0, column=0)
 
-        self.hex_text_box_0 = tk.Entry(self.subframe_1_1, width=10, bg=controller.secondary_color)
+        self.hex_text_box_0 = tk.Entry(self.subframe_1_1, width=10, bg=controller.secondary_color, fg=BG_COLOR_BLACK_DEFAULT, font=FONT_TUPLE_TEXT)
         self.hex_text_box_0.insert(0, self.controller.primary_color[1:])
         self.hex_text_box_0.grid(row=0, column=1)
 
@@ -252,7 +253,7 @@ class SettingsScreen(tk.Frame):
         self.hex_label_1.configure(font=FONT_TUPLE_REG)
         self.hex_label_1.grid(row=0, column=0)
 
-        self.hex_text_box_1 = tk.Entry(self.subframe_2_1, width=10, bg=controller.secondary_color)
+        self.hex_text_box_1 = tk.Entry(self.subframe_2_1, width=10, bg=controller.secondary_color, fg=BG_COLOR_BLACK_DEFAULT, font=FONT_TUPLE_TEXT)
         self.hex_text_box_1.insert(0, self.controller.secondary_color[1:])
         self.hex_text_box_1.grid(row=0, column=1)
 
@@ -359,11 +360,6 @@ def update_primary_color(screen, hex_value: str, red_value: int, green_value: in
     screen.controller.frames["MainScreen"].selected_file_label.configure(bg=hex_value)
     screen.controller.frames["MainScreen"].output_label.configure(bg=hex_value)
 
-    screen.controller.frames["MainScreen"].text_area_program.configure(fg=hex_value)
-    screen.controller.frames["MainScreen"].text_area_output.configure(fg=hex_value)
-
-    screen.controller.frames["MainScreen"].selected_file_text_box.configure(fg=hex_value)
-
     screen.controller.frames["MainScreen"].import_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].save_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].load_button.configure(fg=hex_value)
@@ -436,11 +432,6 @@ def update_secondary_color(screen, hex_value: str, red_value: int, green_value: 
     screen.controller.frames["MainScreen"].uvsim_label.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].selected_file_label.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].output_label.configure(fg=hex_value)
-
-    screen.controller.frames["MainScreen"].text_area_program.configure(bg=hex_value)
-    screen.controller.frames["MainScreen"].text_area_output.configure(bg=hex_value)
-
-    screen.controller.frames["MainScreen"].selected_file_text_box.configure(bg=hex_value)
 
     screen.controller.frames["MainScreen"].import_button.configure(bg=hex_value)
     screen.controller.frames["MainScreen"].load_button.configure(bg=hex_value)
