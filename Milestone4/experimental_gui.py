@@ -41,10 +41,6 @@ class UVSimGui(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-    def update_primary_color(self, hex_value):
-        self.primary_color = "#" + str(hex_value)
-        self.__init__()
-
 
 class MainScreen(tk.Frame):
     def __init__(self, parent, controller):
@@ -145,131 +141,129 @@ class MainScreen(tk.Frame):
         settings_button.grid(row=0, column=0,)
 
 
+
 class SettingsScreen(tk.Frame):
 
-    def update_primary_color(self, hex_value):
-        self.controller.primary_color = "#" + str(hex_value)
-        tk.Tk.update(self)
+    def change_primary_color(self, hex_value):
+        self.controller.primary_color = str(hex_value)
+
 
     def __init__(self, parent, controller):
         tk.Frame.__init__(self, parent)
 
-        self.controller = controller
         self.configure(bg=controller.primary_color, padx=0, pady=0)
 
-        subframe_0 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
-        subframe_0.configure(bg=controller.primary_color)
-        subframe_0.pack()
+        self.subframe_0 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
+        self.subframe_0.configure(bg=controller.primary_color)
+        self.subframe_0.pack()
 
-        rgb_label = tk.Label(subframe_0, text="Color Configuration: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        rgb_label.configure(font=FONT_TUPLE_REG)
-        rgb_label.grid(row=0, column=0)
+        self.rgb_label = tk.Label(self.subframe_0, text="Color Configuration: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.rgb_label.configure(font=FONT_TUPLE_REG)
+        self.rgb_label.grid(row=0, column=0)
 
-        subframe_1 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
-        subframe_1.configure(bg=controller.primary_color)
-        subframe_1.pack()
+        self.subframe_1 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
+        self.subframe_1.configure(bg=controller.primary_color)
+        self.subframe_1.pack()
 
-        primary_label = tk.Label(subframe_1, text="Primary Color: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        primary_label.configure(font=FONT_TUPLE_REG)
-        primary_label.grid(row=0, column=0)
+        self.primary_label = tk.Label(self.subframe_1, text="Primary Color: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.primary_label.configure(font=FONT_TUPLE_REG)
+        self.primary_label.grid(row=0, column=0)
 
-        subframe_1_0 = tk.LabelFrame(subframe_1, padx=5, pady=5, bd=0)
-        subframe_1_0.configure(bg=controller.primary_color)
-        subframe_1_0.grid(row=1, column=0)
+        self.subframe_1_0 = tk.LabelFrame(self.subframe_1, padx=5, pady=5, bd=0)
+        self.subframe_1_0.configure(bg=controller.primary_color)
+        self.subframe_1_0.grid(row=1, column=0)
 
-        red_label_0 = tk.Label(subframe_1_0, text="Red Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        red_label_0.configure(font=FONT_TUPLE_REG)
-        red_label_0.grid(row=0, column=0)
+        self.red_label_0 = tk.Label(self.subframe_1_0, text="Red Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.red_label_0.configure(font=FONT_TUPLE_REG)
+        self.red_label_0.grid(row=0, column=0)
 
-        red_slider_0 = tk.Scale(subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        red_slider_0.grid(row=0, column=1)
+        self.red_slider_0 = tk.Scale(self.subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.red_slider_0.grid(row=0, column=1)
 
-        green_label_0 = tk.Label(subframe_1_0, text="Green Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        green_label_0.configure(font=FONT_TUPLE_REG)
-        green_label_0.grid(row=1, column=0)
+        self.green_label_0 = tk.Label(self.subframe_1_0, text="Green Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.green_label_0.configure(font=FONT_TUPLE_REG)
+        self.green_label_0.grid(row=1, column=0)
 
-        green_slider_0 = tk.Scale(subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        green_slider_0.grid(row=1, column=1)
+        self.green_slider_0 = tk.Scale(self.subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.green_slider_0.grid(row=1, column=1)
 
-        blue_label_0 = tk.Label(subframe_1_0, text="Blue Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        blue_label_0.configure(font=FONT_TUPLE_REG)
-        blue_label_0.grid(row=2, column=0)
+        self.blue_label_0 = tk.Label(self.subframe_1_0, text="Blue Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.blue_label_0.configure(font=FONT_TUPLE_REG)
+        self.blue_label_0.grid(row=2, column=0)
 
-        blue_slider_0 = tk.Scale(subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        blue_slider_0.grid(row=2, column=1)
+        self.blue_slider_0 = tk.Scale(self.subframe_1_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.blue_slider_0.grid(row=2, column=1)
 
-        subframe_1_1 = tk.LabelFrame(subframe_1, padx=5, pady=5, bd=0)
-        subframe_1_1.configure(bg=controller.primary_color)
-        subframe_1_1.grid(row=2, column=0)
+        self.subframe_1_1 = tk.LabelFrame(self.subframe_1, padx=5, pady=5, bd=0)
+        self.subframe_1_1.configure(bg=controller.primary_color)
+        self.subframe_1_1.grid(row=2, column=0)
 
-        hex_label_0 = tk.Label(subframe_1_1, text="Hex Value: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        hex_label_0.configure(font=FONT_TUPLE_REG)
-        hex_label_0.grid(row=0, column=0)
+        self.hex_label_0 = tk.Label(self.subframe_1_1, text="Hex Value: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.hex_label_0.configure(font=FONT_TUPLE_REG)
+        self.hex_label_0.grid(row=0, column=0)
 
-        hex_text_box_0 = tk.Entry(subframe_1_1, width=10, bg=BG_COLOR_GREY_DEFAULT)
-        hex_text_box_0.grid(row=0, column=1)
+        self.hex_text_box_0 = tk.Entry(self.subframe_1_1, width=10, bg=BG_COLOR_GREY_DEFAULT)
+        self.hex_text_box_0.grid(row=0, column=1)
 
-        apply_button_0 = tk.Button(subframe_1_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: self.update_primary_color(str(hex_text_box_0.get())))
-        apply_button_0.configure(font=FONT_TUPLE_REG)
-        apply_button_0.grid(row=0, column=2, padx=10)
+        self.apply_button_0 = tk.Button(self.subframe_1_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: self.update_primary_color(str(hex_text_box_0.get())))
+        self.apply_button_0.configure(font=FONT_TUPLE_REG)
+        self.apply_button_0.grid(row=0, column=2, padx=10)
 
-        subframe_2 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
-        subframe_2.configure(bg=controller.primary_color)
-        subframe_2.pack()
+        self.subframe_2 = tk.LabelFrame(self, padx=5, pady=5, bd=0)
+        self.subframe_2.configure(bg=controller.primary_color)
+        self.subframe_2.pack()
 
-        secondary_label = tk.Label(subframe_2, text="Secondary Color: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        secondary_label.configure(font=FONT_TUPLE_REG)
-        secondary_label.grid(row=0, column=0)
+        self.secondary_label = tk.Label(self.subframe_2, text="Secondary Color: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.secondary_label.configure(font=FONT_TUPLE_REG)
+        self.secondary_label.grid(row=0, column=0)
 
-        subframe_2_0 = tk.LabelFrame(subframe_2, padx=5, pady=5, bd=0)
-        subframe_2_0.configure(bg=controller.primary_color)
-        subframe_2_0.grid(row=1, column=0)
+        self.subframe_2_0 = tk.LabelFrame(self.subframe_2, padx=5, pady=5, bd=0)
+        self.subframe_2_0.configure(bg=controller.primary_color)
+        self.subframe_2_0.grid(row=1, column=0)
 
-        red_label_1 = tk.Label(subframe_2_0, text="Red Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        red_label_1.configure(font=FONT_TUPLE_REG)
-        red_label_1.grid(row=0, column=0)
+        self.red_label_1 = tk.Label(self.subframe_2_0, text="Red Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.red_label_1.configure(font=FONT_TUPLE_REG)
+        self.red_label_1.grid(row=0, column=0)
 
-        red_slider_1 = tk.Scale(subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        red_slider_1.grid(row=0, column=1)
+        self.red_slider_1 = tk.Scale(self.subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.red_slider_1.grid(row=0, column=1)
 
-        green_label_1 = tk.Label(subframe_2_0, text="Green Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        green_label_1.configure(font=FONT_TUPLE_REG)
-        green_label_1.grid(row=1, column=0)
+        self.green_label_1 = tk.Label(self.subframe_2_0, text="Green Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.green_label_1.configure(font=FONT_TUPLE_REG)
+        self.green_label_1.grid(row=1, column=0)
 
-        green_slider_1 = tk.Scale(subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        green_slider_1.grid(row=1, column=1)
+        self.green_slider_1 = tk.Scale(self.subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.green_slider_1.grid(row=1, column=1)
 
-        blue_label_1 = tk.Label(subframe_2_0, text="Blue Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        blue_label_1.configure(font=FONT_TUPLE_REG)
-        blue_label_1.grid(row=2, column=0)
+        self.blue_label_1 = tk.Label(self.subframe_2_0, text="Blue Value:", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.blue_label_1.configure(font=FONT_TUPLE_REG)
+        self.blue_label_1.grid(row=2, column=0)
 
-        blue_slider_1 = tk.Scale(subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
-        blue_slider_1.grid(row=2, column=1)
+        self.blue_slider_1 = tk.Scale(self.subframe_2_0, from_=0, to=255, bd=0, highlightthickness=0, length=255, bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT, orient=tk.HORIZONTAL)
+        self.blue_slider_1.grid(row=2, column=1)
 
-        subframe_2_1 = tk.LabelFrame(subframe_2, padx=5, pady=5, bd=0)
-        subframe_2_1.configure(bg=controller.primary_color)
-        subframe_2_1.grid(row=2, column=0)
+        self.subframe_2_1 = tk.LabelFrame(self.subframe_2, padx=5, pady=5, bd=0)
+        self.subframe_2_1.configure(bg=controller.primary_color)
+        self.subframe_2_1.grid(row=2, column=0)
 
-        hex_label_1 = tk.Label(subframe_2_1, text="Hex Value: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
-        hex_label_1.configure(font=FONT_TUPLE_REG)
-        hex_label_1.grid(row=0, column=0)
+        self.hex_label_1 = tk.Label(self.subframe_2_1, text="Hex Value: ", bg=controller.primary_color, fg=BG_COLOR_GREY_DEFAULT)
+        self.hex_label_1.configure(font=FONT_TUPLE_REG)
+        self.hex_label_1.grid(row=0, column=0)
 
-        hex_text_box_1 = tk.Entry(subframe_2_1, width=10, bg=BG_COLOR_GREY_DEFAULT)
-        hex_text_box_1.grid(row=0, column=1)
+        self.hex_text_box_1 = tk.Entry(self.subframe_2_1, width=10, bg=BG_COLOR_GREY_DEFAULT)
+        self.hex_text_box_1.grid(row=0, column=1)
 
-        apply_button_1 = tk.Button(subframe_2_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: controller.show_frame("MainScreen"))
-        apply_button_1.configure(font=FONT_TUPLE_REG)
-        apply_button_1.grid(row=0, column=2, padx=10)
+        self.apply_button_1 = tk.Button(self.subframe_2_1, text="Apply", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=10, command=lambda: controller.show_frame("MainScreen"))
+        self.apply_button_1.configure(font=FONT_TUPLE_REG)
+        self.apply_button_1.grid(row=0, column=2, padx=10)
 
-        subframe_x = tk.LabelFrame(self, padx=5, pady=5, bd=0)
-        subframe_x.configure(bg=controller.primary_color)
-        subframe_x.pack()
+        self.subframe_x = tk.LabelFrame(self, padx=5, pady=5, bd=0)
+        self.subframe_x.configure(bg=controller.primary_color)
+        self.subframe_x.pack()
 
-        done_button = tk.Button(subframe_x, text="Done", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=25, command=lambda: controller.show_frame("MainScreen"))
-        done_button.configure(font=FONT_TUPLE_REG)
-        done_button.grid(row=0, column=0, pady=10)
-
-
+        self.done_button = tk.Button(self.subframe_x, text="Done", bg=BG_COLOR_GREY_DEFAULT, fg=controller.primary_color, width=25, command=lambda: controller.show_frame("MainScreen"))
+        self.done_button.configure(font=FONT_TUPLE_REG)
+        self.done_button.grid(row=0, column=0, pady=10)
 
 
 if __name__ == "__main__":
