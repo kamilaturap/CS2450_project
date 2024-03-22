@@ -1,15 +1,26 @@
-*make sure to add in that the user can only save changes after they click load, and then click run, and the current file is actually changed from the original file*
 Scrum Master: Anna Youngstrom
+
+UVSim simulates running a BasicML script. All files imported into UVSim should be written in standard BasicML format with a maximum of 100 registers.
 
 How to install and run UVSim:
 1. Make sure you have Python installed and set up on your computer.
 2. Download the "program" folder.
-3. Run "RunProgram.py" using python.
+3. Run "run_program.py" using python.
 
 How to use UVSim:
-1. Click the "Open File" button to open a program file, or start typing in the program registers field to start a new program file.
-2. Make edits to your program until you are ready to run it. Keep in mind that inputs should be a signed 4-digit word.
-3. Click "Load Program" to load the program into the registers. You must click this e
-4. Click "Run Program" to run the program.
-5. Click "Save File" to save any changes you made.
-6. Click "Close Program" to close the current file you are working on and start over.
+  
+  If importing a pre-written program:
+    1. Click "Import .txt File" and select your BasicML file.
+    2. Click "Load Selected Program"
+    3. Make any needed changes to the BasicML program. Note: if any changes are made, you must save them by clicking "Save Program Changes" then repeat steps 1 and 2 before the BasicML script will run with the changes.
+    4. Click "Run Progam" to run the BasicML script.
+  
+  If writing a new BasicML program in UVSim:
+    1. Write your BasicML script in the top text field. Keep in mind that each row is equivalent to one register. Each line of the script should be a 4-digit word. There should be a maximum of 100 lines.
+    2. Click "Save Program Changes" and save the file.
+    3. Click "Import .txt File" and select the file you just saved.
+    4. Click "Load Selected Program"
+    5. Click "Run Program" to run the BasicML script.
+
+How to change color scheme:
+  
