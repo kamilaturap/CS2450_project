@@ -23,4 +23,8 @@ How to use UVSim:
     5. Click "Run Program" to run the BasicML script.
 
 How to change color scheme:
+1. Click "Settings"
+2. Set the background color by moving the color selector bars or imputting a hex value for "Primary Color". Then click "apply".
+3. 
+
   
