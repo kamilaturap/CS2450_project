@@ -1,9 +1,12 @@
 import tkinter as tk
 from tkinter import font as tkfont
+from tkinter import messagebox as tkmessage
+from tkinter import simpledialog as tkprompt
 from tkinter import filedialog as tkfile
 
-from breezypythongui import EasyFrame
 from memory import *
+from file_manager import *
+from run_program import *
 
 BG_COLOR_GREEN_DEFAULT = "#275d38"
 BG_COLOR_GREY_DEFAULT = "#e8e8e8"
@@ -16,8 +19,10 @@ FONT_TUPLE_TEXT = ("Cascadia Code", 8)
 
 
 class UVSimGui(tk.Tk):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, runner, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
+
+        self.runner = runner
 
         self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")
         self.title("UVSim")
@@ -44,6 +49,58 @@ class UVSimGui(tk.Tk):
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()
+
+
+    def clear(self):
+        self.frames["MainScreen"].text_area_program.delete("1.0", tk.END)
+        self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
+        self.frames["MainScreen"].selected_file_text_box.delete(0, tk.END)
+
+
+    def select_file(self):
+        self.clear()
+        self.file_path = tkfile.askopenfilename(title="Select a file", filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
+        self.frames["MainScreen"].selected_file_text_box.insert(0, self.file_path)
+
+
+    def load_file(self):
+
+        self.file_path = self.frames["MainScreen"].selected_file_text_box.get()
+
+        with open(self.file_path, "r") as file:
+            content = file.read()
+            self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
+            self.frames["MainScreen"].text_area_program.insert(tk.END, content)
+
+        self.runner.load_file()
+
+
+    def save_file(self):
+        self.file_save = tkfile.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
+        self.file_save.write(self.frames["MainScreen"].text_area_program.get('1.0', tk.END))
+        self.file_save.close()
+
+
+    def run_file(self):
+        self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
+        self.runner.execute_program()
+
+
+    def output(self, text):
+        self.frames["MainScreen"].text_area_output.insert(tk.END, text + '\n')
+
+
+    def popup(self):
+        return tkprompt.askstring(title="User Input", prompt="Enter a signed four-digit word:\t\t")
+
+
+    def invalid_input(self):
+        self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
+        tkmessage.showerror(title="Error", message="The allotted commands exceeds 100 registers. Please reduce amount.")
+
+
+    def get_file(self):
+        return self.file_path
 
 
 class MainScreen(tk.Frame):
@@ -75,7 +132,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_0_0.configure(bg=controller.primary_color)
         self.subframe_1_0_0.pack()
 
-        self.import_button = tk.Button(self.subframe_1_0_0, text="Import .txt File", bg=controller.secondary_color, fg=controller.primary_color)
+        self.import_button = tk.Button(self.subframe_1_0_0, text="Import .txt File", bg=controller.secondary_color, fg=controller.primary_color, command= lambda: self.controller.select_file())
         self.import_button.configure(font=FONT_TUPLE_REG)
         self.import_button.grid(row=0, column=0, padx=5)
 
@@ -94,11 +151,11 @@ class MainScreen(tk.Frame):
         self.subframe_1_1.configure(bg=controller.primary_color)
         self.subframe_1_1.grid(row=0, column=1)
 
-        self.load_button = tk.Button(self.subframe_1_1, text="Load Selected Program", bg=controller.secondary_color, fg=controller.primary_color, width=25)
+        self.load_button = tk.Button(self.subframe_1_1, text="Load Selected Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.load_file())
         self.load_button.configure(font=FONT_TUPLE_REG)
         self.load_button.grid(row=0, column=0, pady=5)
 
-        self.save_button = tk.Button(self.subframe_1_1, text="Save Program Changes", bg=controller.secondary_color, fg=controller.primary_color, width=25)
+        self.save_button = tk.Button(self.subframe_1_1, text="Save Program Changes", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.save_file())
         self.save_button.configure(font=FONT_TUPLE_REG)
         self.save_button.grid(row=1, column=0, pady=5)
 
@@ -106,7 +163,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_2.configure(bg=controller.primary_color)
         self.subframe_1_2.grid(row=0, column=2)
 
-        self.run_button = tk.Button(self.subframe_1_2, text="Run Program", bg=controller.secondary_color, fg=controller.primary_color, width=25)
+        self.run_button = tk.Button(self.subframe_1_2, text="Run Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.run_file())
         self.run_button.configure(font=FONT_TUPLE_REG)
         self.run_button.grid(row=1, column=0)
 
@@ -451,6 +508,7 @@ def to_hex(value: int) -> str:
 
 
 if __name__ == "__main__":
-    app = UVSimGui()
+    runner = None
+    app = UVSimGui(runner)
     app.mainloop()
     
