@@ -19,10 +19,10 @@ FONT_TUPLE_TEXT = ("Cascadia Code", 8)
 
 
 class UVSimGui(tk.Tk):
-    def __init__(self, runner, *args, **kwargs):
+    def __init__(self, pass_runner, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
 
-        self.runner = runner
+        self.runner = pass_runner
 
         self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")
         self.title("UVSim")
@@ -132,7 +132,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_0_0.configure(bg=controller.primary_color)
         self.subframe_1_0_0.pack()
 
-        self.import_button = tk.Button(self.subframe_1_0_0, text="Import .txt File", bg=controller.secondary_color, fg=controller.primary_color, command= lambda: self.controller.select_file())
+        self.import_button = tk.Button(self.subframe_1_0_0, text="Select .txt File", bg=controller.secondary_color, fg=controller.primary_color, command= lambda: self.controller.select_file())
         self.import_button.configure(font=FONT_TUPLE_REG)
         self.import_button.grid(row=0, column=0, padx=5)
 
@@ -425,6 +425,7 @@ def update_primary_color(screen, hex_value: str, red_value: int, green_value: in
     screen.controller.frames["MainScreen"].load_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].run_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].settings_button.configure(fg=hex_value)
+
 
 def update_secondary_color(screen, hex_value: str, red_value: int, green_value: int, blue_value: int) -> None:
     current_color = screen.controller.secondary_color

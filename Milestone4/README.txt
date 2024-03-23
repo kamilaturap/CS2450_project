@@ -31,7 +31,7 @@ How to change color scheme:
 
 BasicML vocabulary defined as follows:
 
-I/O operation:
+I/O operations:
 READ = 10 Read a word from the keyboard into a specific location in memory.
 WRITE = 11 Write a word from a specific location in memory to screen.
 

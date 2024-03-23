@@ -41,5 +41,5 @@ Just defines all the buttons and things that appear on the main frame of UVSim. 
 Side Functions:
 		update_primary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined primary colored objects.
 		update_secondary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined secondary colored objects.
-		to_hex: converts imputed rgb values to hex values.
+		to_hex: converts inputted rgb values to hex values.
 		main: assigns runner, starts up the software and starts up mainloop.
