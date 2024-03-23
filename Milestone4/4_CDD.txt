@@ -1,27 +1,32 @@
-﻿Classes: (look in memory.py and experimental_gui.py)
+﻿Classes: (look in memory.py, experimental_gui.py, run_program.py, and file_manager.py)
+
 Memory Class:
-        The purpose of the memory class is to define the registers and define all the different operations performed from the different user inputs.
-        Functions:
-                Constructor: The purpose of the constructor is to create the core variables like the register, accumulator and pointer. The register is used to hold the different inputs from the user to do operations with. The accumulator is used as basically a temp variable that all operations are performed on and the pointer used for the branch holding the target memory location to branch to. The pre-conditions for this function is whenever a new Memory class is created. The post-conditions are the creation of the different variables and setting aside that memory.
-	     clear: The purpose of clear is to make all registers equal to 0 and start fresh so a new file could be run without having anything leak over from past attempts. The pre-condition is usually when a new file is loaded in or the clear button is pressed in the program. The post-conditions are that all registers are reset to 0 and the program resets itself.
-                readProgram: The purpose of this function is to read in the values from the file provided from the user. The parameter is file which is just the name of the file provided. The pre-condition for this function is it getting called directly and the post-conditions are that the user’s text file gets parsed into different lines and the first registers are filled by the “words” from the input.
-                read: The purpose of this function is to take a “word” from the user and read it into a specified memory location. This function takes two parameters, the first is the memory location the value will get stored at and the second is the “word” that’s going to be stored in memory. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 10. The post-condition is that the specified memory location now holds the number assigned by the user.
-                write: The purpose of this function is to write a “word” from a specified memory location and display it on the screen. This function takes one parameter which is the memory location the “word” is located at. This function will return the “word” in that memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 11. The post-condition is that the number in the specified memory location is printed to the screen.
-                load: The purpose of this function is to load a “word” from a specified memory location into the accumulator. This function takes one parameter which is the memory location the “word” is located at. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 20. The post-condition is that the accumulator will be assigned the value that’s in the specified memory location.
-                store: The purpose of this function is to store a “word” from the accumulator into a specified memory location. This function takes one parameter which is the memory location the “word” is located at. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 21. The post-condition is that the value in the specified memory location is assigned the value in the accumulator.
-                add: The purpose of this function is to take a “word” from a memory location and add it to the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 30. The post-condition is that the accumulator has increased by the amount in the memory location.
-                subtract: The purpose of this function is to take a “word” from a memory location and subtract it from the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 31. The post-condition is The post-condition is that the accumulator has decreased by the amount in the memory location.
-                divide: The purpose of this function is to take a “word” from a memory location and divide it from the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 32. The post-condition is that the accumulator is divided by the amount in the memory location.
-                multiply: The purpose of this function is to take a “word” from a memory location and multiply it with the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 33. The post-condition is that the accumulator is multiplied by the amount in the memory location.
-                branch: The purpose of this function is to go to or branch to a specific spot in memory. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 40. The post-condition is that the program will redirect to the specified memory spot.
-                branchneg: The purpose of this function is to go to or branch to a specific spot in memory when the accumulator is negative. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 41. The post-condition is that the program will redirect to the specified memory spot if the accumulator is negative.
-                branchzero: The purpose of this function is to go to or branch to a specific spot in memory when the accumulator is negative. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 41. The post-condition is that the program will redirect to the specified memory spot when the accumulator is zero.
-                inc_reg: The purpose of this function is to point the pointer to the next line from the user text file. The pre-condition for this function is after it’s called by the code usually after each operation runs. The post-condition is that the variable pointer will point 1 address forward.
+
+    The purpose of the memory class is to define the registers and define all the different operations performed from the different user inputs.
+
+    Functions:
+        Constructor: The purpose of the constructor is to create the core variables like the register, accumulator and pointer. The register is used to hold the different inputs from the user to do operations with. The accumulator is used as basically a temp variable that all operations are performed on and the pointer used for the branch holding the target memory location to branch to. The pre-conditions for this function is whenever a new Memory class is created. The post-conditions are the creation of the different variables and setting aside that memory.
+        clear: The purpose of clear is to make all registers equal to 0 and start fresh so a new file could be run without having anything leak over from past attempts. The pre-condition is usually when a new file is loaded in or the clear button is pressed in the program. The post-conditions are that all registers are reset to 0 and the program resets itself.
+        readProgram: The purpose of this function is to read in the values from the file provided from the user. The parameter is file which is just the name of the file provided. The pre-condition for this function is it getting called directly and the post-conditions are that the user’s text file gets parsed into different lines and the first registers are filled by the “words” from the input.
+        read: The purpose of this function is to take a “word” from the user and read it into a specified memory location. This function takes two parameters, the first is the memory location the value will get stored at and the second is the “word” that’s going to be stored in memory. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 10. The post-condition is that the specified memory location now holds the number assigned by the user.
+        write: The purpose of this function is to write a “word” from a specified memory location and display it on the screen. This function takes one parameter which is the memory location the “word” is located at. This function will return the “word” in that memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 11. The post-condition is that the number in the specified memory location is printed to the screen.
+        load: The purpose of this function is to load a “word” from a specified memory location into the accumulator. This function takes one parameter which is the memory location the “word” is located at. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 20. The post-condition is that the accumulator will be assigned the value that’s in the specified memory location.
+        store: The purpose of this function is to store a “word” from the accumulator into a specified memory location. This function takes one parameter which is the memory location the “word” is located at. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 21. The post-condition is that the value in the specified memory location is assigned the value in the accumulator.
+        add: The purpose of this function is to take a “word” from a memory location and add it to the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 30. The post-condition is that the accumulator has increased by the amount in the memory location.
+        subtract: The purpose of this function is to take a “word” from a memory location and subtract it from the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 31. The post-condition is The post-condition is that the accumulator has decreased by the amount in the memory location.
+        divide: The purpose of this function is to take a “word” from a memory location and divide it from the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 32. The post-condition is that the accumulator is divided by the amount in the memory location.
+        multiply: The purpose of this function is to take a “word” from a memory location and multiply it with the accumulator. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 33. The post-condition is that the accumulator is multiplied by the amount in the memory location.
+        branch: The purpose of this function is to go to or branch to a specific spot in memory. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 40. The post-condition is that the program will redirect to the specified memory spot.
+        branchneg: The purpose of this function is to go to or branch to a specific spot in memory when the accumulator is negative. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 41. The post-condition is that the program will redirect to the specified memory spot if the accumulator is negative.
+        branchzero: The purpose of this function is to go to or branch to a specific spot in memory when the accumulator is negative. This function takes 1 parameter which is the specified memory location. The pre-condition for this function is being called by the user in their text file when the first two numbers of the line are 41. The post-condition is that the program will redirect to the specified memory spot when the accumulator is zero.
+        inc_reg: The purpose of this function is to point the pointer to the next line from the user text file. The pre-condition for this function is after it’s called by the code usually after each operation runs. The post-condition is that the variable pointer will point 1 address forward.
 
 
-UVSimGui Class: 
+UVSimGui Class:
+
 	The purpose of the UVSimGui class is to create the framework for the user interface. It creates a frame and also does functions to the text file provided by the user. It also handles calling the memory class to do functions specified by the user in their text file.
-	Functions: 
+
+	Functions:
 		Constructor: The purpose of the constructor is to define the elements that will appear on the screen, such as labels, file input, and buttons. It has three parameters, the first is runner which is used to implement the memory class. The second (*args) is the positional arguments and the third is **kwargs which is used for keyword arguments.
 		show_frame: the show frame function just takes the page name that’s passed to it and pushes it on top of everything else in the frame. The pre-condition is when the process starts up. The post-condition is that everything in the gui is put into place.
 		clear: The clear function takes everything from the text area and clears it out. It also takes the file it was holding and deletes it from the program. The pre-condition is the file getting changed or the load button is pushed. The post-condition is that everything in the text area is cleared and clean.
@@ -30,16 +35,40 @@ UVSimGui Class:
 		save_file: The save file function uses save as to take the text in the text area and either save over an existing file or save as a new file. The pre-condition is that the save button is pushed. The post-condition is that the text from the text area gets saved as a local file.
 		run_file: The run file function takes the text in the text area and uses the memory class to run the specified functions. The pre-condition is the user pressing the run button. The post-condition is the program running and the result being output on the screen.
 		output: The output function prints the results of the program running the text file provided by the user. The pre-condition is the program being run and the post-condition is the result being output to the screen.
-		popup: The popup function will show a popup for every user input required by the memory class. The user will then enter a 4 digit number to be used in the program. The pre-condition is when the functions that need input are called, the post-condition is that the number inputted would be used in different operations.
+		popup: The popup function will show a popup for every user input required by the memory class. The user will then enter a 4-digit number to be used in the program. The pre-condition is when the functions that need input are called, the post-condition is that the number inputted would be used in different operations.
 		invalid_input: Shows an error if an incorrect input was found in the text file.
 		get_file: returns the file path to the file the user wants to run.
 
 		
-MainScreen class: 
-Just defines all the buttons and things that appear on the main frame of UVSim. This includes all buttons and smaller frames.
+    MainScreen class:
 
-Side Functions:
-		update_primary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined primary colored objects.
-		update_secondary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined secondary colored objects.
-		to_hex: converts inputted rgb values to hex values.
-		main: assigns runner, starts up the software and starts up mainloop.
+        Just defines all the buttons and things that appear on the main frame of UVSim. This includes all buttons and smaller frames.
+
+    SettingsScreen class:
+
+        This is the second frame managed by the UVSimGui Class. This includes the slider bars to control the rgb or hex values of the primary and secondary color themes.
+
+    Helper Functions:
+            update_primary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined primary colored objects.
+            update_secondary_color: takes multiple different parameters to determine the color of the new screen. Changes the background of the screen and other defined secondary colored objects.
+            to_hex: converts inputted rgb values to hex values.
+            main: assigns a null runner, starts up the software and starts up mainloop. (For testing purposes only, many features are not available if run from the gui main itself.)
+
+FileManager() Class:
+
+    Separates file functionality from RunProgram. While small right now, additional functions may be added to this class in the future.
+
+    Functions:
+        Constructor: No variables to initialize.
+        RunFile(): Takes a program and a gui as input variables. Checks to make sure the file is within the 100 commands limit. If it is not it displays an error to the gui.
+
+RunProgram() Class:
+
+    The purpose of the RunProgram class is to manage the different background processes all at the same time, namely the program, the gui, and the file management. This is the program who's main function we will run to launch the software.
+
+    Functions:
+        Constructor: The class is initialized and instantiates a gui class attribute, a memory class attribute, and a file manager attribute.
+        load_file: Communicates to the file_manager class that the file should be loaded into memory, unless the selected file is too large.
+        clear: Communicates to memory that the clear function should be used.
+        execute_program: Begins execution of the loaded program and outputs to the output console.
+        main: Used to start the application, creates a runner object and starts the main loop of the gui.

@@ -84,6 +84,7 @@ class RunProgram:
             self.prog.pointer += 1
         return
 
+
 if __name__ == "__main__":
     app = RunProgram()
     app.gui.mainloop()

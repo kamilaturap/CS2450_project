@@ -23,6 +23,8 @@ class UVSimGui(tk.Tk):
         tk.Tk.__init__(self, *args, **kwargs)
 
         self.runner = pass_runner
+        self.file_path = ""
+        self.file_save = ""
 
         self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")
         self.title("UVSim")
@@ -132,7 +134,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_0_0.configure(bg=controller.primary_color)
         self.subframe_1_0_0.pack()
 
-        self.import_button = tk.Button(self.subframe_1_0_0, text="Select .txt File", bg=controller.secondary_color, fg=controller.primary_color, command= lambda: self.controller.select_file())
+        self.import_button = tk.Button(self.subframe_1_0_0, text="Select .txt File", bg=controller.secondary_color, fg=controller.primary_color, command=lambda: self.controller.select_file())
         self.import_button.configure(font=FONT_TUPLE_REG)
         self.import_button.grid(row=0, column=0, padx=5)
 
@@ -151,11 +153,11 @@ class MainScreen(tk.Frame):
         self.subframe_1_1.configure(bg=controller.primary_color)
         self.subframe_1_1.grid(row=0, column=1)
 
-        self.load_button = tk.Button(self.subframe_1_1, text="Load Selected Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.load_file())
+        self.load_button = tk.Button(self.subframe_1_1, text="Load Selected Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: self.controller.load_file())
         self.load_button.configure(font=FONT_TUPLE_REG)
         self.load_button.grid(row=0, column=0, pady=5)
 
-        self.save_button = tk.Button(self.subframe_1_1, text="Save Program Changes", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.save_file())
+        self.save_button = tk.Button(self.subframe_1_1, text="Save Program Changes", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: self.controller.save_file())
         self.save_button.configure(font=FONT_TUPLE_REG)
         self.save_button.grid(row=1, column=0, pady=5)
 
@@ -163,7 +165,7 @@ class MainScreen(tk.Frame):
         self.subframe_1_2.configure(bg=controller.primary_color)
         self.subframe_1_2.grid(row=0, column=2)
 
-        self.run_button = tk.Button(self.subframe_1_2, text="Run Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command= lambda: self.controller.run_file())
+        self.run_button = tk.Button(self.subframe_1_2, text="Run Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: self.controller.run_file())
         self.run_button.configure(font=FONT_TUPLE_REG)
         self.run_button.grid(row=1, column=0)
 
