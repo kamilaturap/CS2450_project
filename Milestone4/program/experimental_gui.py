@@ -28,7 +28,7 @@ class UVSimGui(tk.Tk):
 
         self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")
         self.title("UVSim")
-        self.iconbitmap(default='assets/UVSim_icon.ico')
+        # self.iconbitmap(default='assets/UVSim_icon.ico')
         
         self.primary_color = BG_COLOR_GREEN_DEFAULT
         self.secondary_color = BG_COLOR_GREY_DEFAULT
