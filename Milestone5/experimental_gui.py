@@ -1,12 +1,9 @@
-import tkinter as tk
 from tkinter import font as tkfont
 from tkinter import messagebox as tkmessage
 from tkinter import simpledialog as tkprompt
 from tkinter import filedialog as tkfile
 
-from memory import *
 from file_manager import *
-from run_program import *
 
 BG_COLOR_GREEN_DEFAULT = "#275d38"
 BG_COLOR_GREY_DEFAULT = "#e8e8e8"
@@ -26,7 +23,7 @@ class UVSimGui(tk.Tk):
         self.file_path = ""
         self.file_save = ""
 
-        self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")
+        """self.title_font = tkfont.Font(name="Vermin Vibes 2 Soft", size=18, weight="bold")"""
         self.title("UVSim")
         # self.iconbitmap(default='assets/UVSim_icon.ico')
         
@@ -52,18 +49,15 @@ class UVSimGui(tk.Tk):
         frame = self.frames[page_name]
         frame.tkraise()
 
-
     def clear(self):
         self.frames["MainScreen"].text_area_program.delete("1.0", tk.END)
         self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
         self.frames["MainScreen"].selected_file_text_box.delete(0, tk.END)
 
-
     def select_file(self):
         self.clear()
         self.file_path = tkfile.askopenfilename(title="Select a file", filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
         self.frames["MainScreen"].selected_file_text_box.insert(0, self.file_path)
-
 
     def load_file(self):
 
@@ -76,30 +70,24 @@ class UVSimGui(tk.Tk):
 
         self.runner.load_file()
 
-
     def save_file(self):
         self.file_save = tkfile.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
         self.file_save.write(self.frames["MainScreen"].text_area_program.get('1.0', tk.END))
         self.file_save.close()
 
-
     def run_file(self):
         self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
         self.runner.execute_program()
 
-
     def output(self, text):
         self.frames["MainScreen"].text_area_output.insert(tk.END, text + '\n')
-
 
     def popup(self):
         return tkprompt.askstring(title="User Input", prompt="Enter a signed four-digit word:\t\t")
 
-
     def invalid_input(self):
         self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
         tkmessage.showerror(title="Error", message="The allotted commands exceeds 100 registers. Please reduce amount.")
-
 
     def get_file(self):
         return self.file_path
@@ -199,9 +187,13 @@ class MainScreen(tk.Frame):
         self.subframe_5.configure(bg=controller.primary_color)
         self.subframe_5.pack()
 
+        self.new_window_button = tk.Button(self.subframe_5, text="New Window", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: controller.runner.new_window_runner())
+        self.new_window_button.configure(font=FONT_TUPLE_REG)
+        self.new_window_button.grid(row=0, column=0, padx=5)
+
         self.settings_button = tk.Button(self.subframe_5, text="Settings", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: controller.show_frame("SettingsScreen"))
         self.settings_button.configure(font=FONT_TUPLE_REG)
-        self.settings_button.grid(row=0, column=0)
+        self.settings_button.grid(row=0, column=1, padx=5)
 
 
 class SettingsScreen(tk.Frame):
@@ -509,9 +501,3 @@ def to_hex(value: int) -> str:
         hex_value = '0' + hex_value
     return hex_value
 
-
-if __name__ == "__main__":
-    runner = None
-    app = UVSimGui(runner)
-    app.mainloop()
-    

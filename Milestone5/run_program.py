@@ -1,5 +1,5 @@
-from file_manager import *
 from experimental_gui import *
+from memory import *
 
 
 class RunProgram:
@@ -10,6 +10,10 @@ class RunProgram:
         self.commands_2_digit = ['10', '11', '20', '21', '30', '31', '32', '33', '40', '41', '42', '43']
         self.commands_3_digit = ['0' + i for i in self.commands_2_digit]
         self.valid = ['+000000', '000000', '+0000', '0000', '']
+
+    def new_window_runner(self):
+        new_app = RunProgram()
+        new_app.gui.mainloop()
 
     def load_file(self):
         """Function: clears everything, branches to FileManager class which will load the text area to the program"""
@@ -143,5 +147,7 @@ class RunProgram:
 
 
 if __name__ == "__main__":
-    app = RunProgram()
-    app.gui.mainloop()
+
+    instances = [None]
+    instances[0] = RunProgram()
+    instances[0].gui.mainloop()
