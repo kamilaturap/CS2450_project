@@ -1,4 +1,4 @@
-from tkinter import font as tkfont
+"""from tkinter import font as tkfont"""
 from tkinter import messagebox as tkmessage
 from tkinter import simpledialog as tkprompt
 from tkinter import filedialog as tkfile
@@ -62,32 +62,50 @@ class UVSimGui(tk.Tk):
     def load_file(self):
 
         self.file_path = self.frames["MainScreen"].selected_file_text_box.get()
+        if self.file_path == "":
+            self.error_popup("No file selected. Select a file using the \"Select .txt File\" button.")
+        else:
+            with open(self.file_path, "r") as file:
+                content = file.read()
+                self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
+                self.frames["MainScreen"].text_area_program.insert(tk.END, content)
 
-        with open(self.file_path, "r") as file:
-            content = file.read()
-            self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
-            self.frames["MainScreen"].text_area_program.insert(tk.END, content)
-
-        self.runner.load_file()
+            self.runner.load_file()
 
     def save_file(self):
-        self.file_save = tkfile.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
-        self.file_save.write(self.frames["MainScreen"].text_area_program.get('1.0', tk.END))
-        self.file_save.close()
+
+        if self.frames["MainScreen"].text_area_program.get("1.0", tk.END) == "\n":
+            self.error_popup("Cannot save an empty file.")
+        else:
+            self.file_save = tkfile.asksaveasfile(title="Select a file", mode='w', defaultextension='.txt')
+
+            if self.file_save is None:
+                self.error_popup("No file selected.")
+            else:
+                self.file_save.write(self.frames["MainScreen"].text_area_program.get('1.0', tk.END))
+                self.file_save.close()
 
     def run_file(self):
-        self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
-        self.runner.execute_program()
+        if self.frames["MainScreen"].text_area_program.get("1.0", tk.END) == "\n":
+            self.error_popup("Please select and load a .txt file using the \"Select .txt File\" and \"Load Selected File\" buttons.")
+        else:
+            self.frames["MainScreen"].text_area_output.delete("1.0", tk.END)
+            self.runner.execute_program()
 
     def output(self, text):
         self.frames["MainScreen"].text_area_output.insert(tk.END, text + '\n')
 
-    def popup(self):
+    @staticmethod
+    def popup():
         return tkprompt.askstring(title="User Input", prompt="Enter a signed four-digit word:\t\t")
 
     def invalid_input(self):
         self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
-        tkmessage.showerror(title="Error", message="The allotted commands exceeds 100 registers. Please reduce amount.")
+        self.error_popup("The allotted commands exceeds 250 registers. Please reduce amount.")
+
+    @staticmethod
+    def error_popup(errmsg):
+        tkmessage.showerror(title="Error", message=errmsg)
 
     def get_file(self):
         return self.file_path
@@ -418,6 +436,7 @@ def update_primary_color(screen, hex_value: str, red_value: int, green_value: in
     screen.controller.frames["MainScreen"].save_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].load_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].run_button.configure(fg=hex_value)
+    screen.controller.frames["MainScreen"].new_window_button.configure(fg=hex_value)
     screen.controller.frames["MainScreen"].settings_button.configure(fg=hex_value)
 
 
@@ -491,6 +510,7 @@ def update_secondary_color(screen, hex_value: str, red_value: int, green_value: 
     screen.controller.frames["MainScreen"].load_button.configure(bg=hex_value)
     screen.controller.frames["MainScreen"].save_button.configure(bg=hex_value)
     screen.controller.frames["MainScreen"].run_button.configure(bg=hex_value)
+    screen.controller.frames["MainScreen"].new_window_button.configure(bg=hex_value)
     screen.controller.frames["MainScreen"].settings_button.configure(bg=hex_value)
 
 
@@ -500,4 +520,3 @@ def to_hex(value: int) -> str:
     if len(hex_value) == 1:
         hex_value = '0' + hex_value
     return hex_value
-

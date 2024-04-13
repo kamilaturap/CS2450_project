@@ -73,7 +73,7 @@ class RunProgram:
 
         if not self.check_registers(self.prog.registers):
             operation = '043'
-            print('error')
+            self.gui.error_popup("Registers in provided program are not of a consistent length. Please edit your program and try again.")
 
         while self.prog.pointer <= 249 and operation != '043':
             if len(self.prog.registers[self.prog.pointer]) == 7:
