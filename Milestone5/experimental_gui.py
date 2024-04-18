@@ -97,7 +97,7 @@ class UVSimGui(tk.Tk):
 
     @staticmethod
     def popup():
-        return tkprompt.askstring(title="User Input", prompt="Enter a signed four-digit word:\t\t")
+        return tkprompt.askstring(title="User Input", prompt="Enter a signed four-digit (or six-digit) word:\t\t")
 
     def invalid_input(self):
         self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
@@ -109,6 +109,12 @@ class UVSimGui(tk.Tk):
 
     def get_file(self):
         return self.file_path
+
+
+    def new_instance(self):
+        runner = RunProgram()
+        new_app = UVSimGui(runner)
+        new_app.mainloop()
 
 
 class MainScreen(tk.Frame):

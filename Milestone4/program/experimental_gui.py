@@ -18,6 +18,13 @@ FONT_TUPLE_REG = ("Cascadia Code Bold", 8)
 FONT_TUPLE_TEXT = ("Cascadia Code", 8)
 
 
+def open_new_window():
+    newWindow = Toplevel(master)
+    newWindow.title("UVSim - New Window")
+    newWindow.geometry("200x200")
+    Label(newWindow, text ="This is a new window").pack()
+
+
 class UVSimGui(tk.Tk):
     def __init__(self, pass_runner, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
@@ -98,11 +105,18 @@ class UVSimGui(tk.Tk):
 
     def invalid_input(self):
         self.frames["MainScreen"].text_area_program.delete('1.0', tk.END)
-        tkmessage.showerror(title="Error", message="The allotted commands exceeds 100 registers. Please reduce amount.")
+        tkmessage.showerror(title="Error", message="The allotted commands exceeds  registers. Please reduce amount.")
 
 
     def get_file(self):
         return self.file_path
+
+
+    def new_instance(self):
+        import subprocess
+        subprocess.Popen(["python", run_program.py])
+
+
 
 
 class MainScreen(tk.Frame):
@@ -199,9 +213,13 @@ class MainScreen(tk.Frame):
         self.subframe_5.configure(bg=controller.primary_color)
         self.subframe_5.pack()
 
+        self.new_program_button = tk.Button(self.subframe_5, text="New Program", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: controller.new_instance())
+        self.new_program_button.configure(font=FONT_TUPLE_REG)
+        self.new_program_button.grid(row=0, column=0, padx=5)
+
         self.settings_button = tk.Button(self.subframe_5, text="Settings", bg=controller.secondary_color, fg=controller.primary_color, width=25, command=lambda: controller.show_frame("SettingsScreen"))
         self.settings_button.configure(font=FONT_TUPLE_REG)
-        self.settings_button.grid(row=0, column=0)
+        self.settings_button.grid(row=0, column=1, padx=5)
 
 
 class SettingsScreen(tk.Frame):
@@ -508,10 +526,3 @@ def to_hex(value: int) -> str:
     if len(hex_value) == 1:
         hex_value = '0' + hex_value
     return hex_value
-
-
-if __name__ == "__main__":
-    runner = None
-    app = UVSimGui(runner)
-    app.mainloop()
-    
